@@ -1,0 +1,29 @@
+1. Enumerar los tipos de datos básicos en C. 
+   Escriba una definición de una variable de cada tipo. Por ej.  :  int a;
+
+    char, unsigned char(1byte)
+    short int, unsigned short int(2bytes)
+    int, unsigned int, long int, unsigned long int(4bytes)
+    float(4bytes)
+    double(8bytes)
+    long double(12bytes)
+
+2. Explique qué significa la palabra word cuando el contexto es la 
+   Arquitectura de una Computadora.
+
+  Es una cadena finita de bits que son manejaos como un conjunto por la maquina
+
+3. ¿Cuántos bits puede almacenar una variable declarada como int (ej. int var;)
+    en 3 computadoras de arquitecturas diferentes: arquitecturas de 8bits, 32bits 
+    y 64bits?.
+
+    NOTA: la respuesta no es tan trivial como parece. Deberá buscar información
+          sobre el lenguaje de programación C. Use wikipedia u otros recursos.
+
+    Un entero equivale a 4 bytes en C por lo tanto podra almacenar 4*8=32 bits
+
+    5. ¿Cuál es el rango numérico de i y j?
+   
+   char i; //char=1bytes --> 2^8=256 posibles valores [-128,127] 
+   unsigned char j;//Lo mismo pero [0,255]
+
