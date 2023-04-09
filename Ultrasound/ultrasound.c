@@ -22,8 +22,8 @@ int main(void)
 
     while(!echo){
       echo = *(PIN_B) & 0b00001000;
-    }//Se queda esperando que se habilite la entrada*/
-
+    }//Se queda esperando que se habilite la entrada
+    //echo = *(PIN_B) & 0b00001000;
     while(echo){
       t++;
       sleep10_us();//Espera 10us*/
