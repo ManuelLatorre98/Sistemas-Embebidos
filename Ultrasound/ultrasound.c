@@ -20,10 +20,10 @@ int main(void)
     sleep10_us();//Espera 10us
     *(PUERTO_B)= *(PUERTO_B) & 0b00000000;//Desactiva salida
 
-    while(!echo){
+    /*while(!echo){
       echo = *(PIN_B) & 0b00001000;
-    }//Se queda esperando que se habilite la entrada
-    //echo = *(PIN_B) & 0b00001000;
+    }//Se queda esperando que se habilite la entrada*/
+    echo = *(PIN_B) & 0b00001000;
     while(echo){
       t++;
       sleep10_us();//Espera 10us*/
