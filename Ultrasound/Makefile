@@ -24,4 +24,4 @@ flash:
 	avr-objcopy -O ihex -R .eeprom $(APP) $(FIRMWARE)
 	avrdude -p atmega328p -c arduino -P /dev/ttyUSB0 -b 115200 -D -U flash:w:$(FIRMWARE):i
 clean:
-	rm main.o $(APP) $(FIRMWARE)
+	rm ultrasound.o $(APP) $(FIRMWARE)
