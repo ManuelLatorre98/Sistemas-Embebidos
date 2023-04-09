@@ -33,7 +33,7 @@ int main(void)
     distancia_cm = tiempo_us / 58;
     serial_put_str("\n\rDIST: ");
     serial_put_int(distancia_cm,3);//Mostrar distancia
-    for (i=0; i<10000; i++);
+    sleep_ms(50);
 
   }
 }
