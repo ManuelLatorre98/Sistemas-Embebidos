@@ -23,5 +23,8 @@ $(APP): $(OBJETOS)
 flash:
 	avr-objcopy -O ihex -R .eeprom $(APP) $(FIRMWARE)
 	avrdude -p atmega328p -c arduino -P /dev/ttyUSB0 -b 115200 -D -U flash:w:$(FIRMWARE):i
+	stty -F /dev/ttyUSB0 speed 2400
+	cat /dev/ttyUSB0	
+	
 clean:
 	rm ultrasound.o $(APP) $(FIRMWARE)
