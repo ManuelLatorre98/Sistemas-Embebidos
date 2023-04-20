@@ -15,14 +15,11 @@ int main(void)
      
       *(PUERTO_B)= *(PUERTO_B) & 0b11111110;//Apaga PB0=d8
       for(i=0; i<100000; i++){} //delay prendido
-      //delay(100000);
       *(PUERTO_B)= *(PUERTO_B) | 0b00000010;//Prende PB1=d9
       
       for(i=0; i<100000; i++){} //delay prendido
-      //delay(100000);
       *(PUERTO_B)= *(PUERTO_B) & 0b11111101;//Apaga PB1=d9
       for(i=0; i<100000; i++){} //delay prendido
-      //delay(100000);
       *(PUERTO_B)= *(PUERTO_B) | 0b00000100;//Prende PB2=d10
 
       for(i=0; i<100000; i++){} //delay prendido
