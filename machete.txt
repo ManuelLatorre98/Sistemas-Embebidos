@@ -17,3 +17,6 @@ chmod +x fileName.sh
 make
 make clean
 make flash
+
+612 USART
+176 ejemplo init
