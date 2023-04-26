@@ -14,27 +14,31 @@ int main(void)
     /* Configure the UART for the serial driver */
     serial_init();
 
-    serial_put_char('s');
+    /*serial_put_char('s');
     serial_put_char('t');
     serial_put_char('a');
     serial_put_char('r');
     serial_put_char('t');
     serial_put_char('\r');
-    serial_put_char('\n');
+    serial_put_char('\n');*/
 
-    while (rcvChar != 'q')
+    while(rcvChar == 'e'){ //Cuando recibe la e larga el knight
+        rcvChar = serial_get_char();
+    }
+    printf("Input: %c",rcvChar);
+
+    /*while (rcvChar != 'q')
     {
-        /* Wait for an incoming character */
+        // Wait for an incoming character 
         rcvChar = serial_get_char();
 
-        /* Echo the character back along with a carriage return and line feed */
+        // Echo the character back along with a carriage return and line feed 
         serial_put_char(rcvChar);
         serial_put_char('\r');
         serial_put_char('\n');
-    }
+    }*/
 
     for (;;);
-
     return 0;
 }
 

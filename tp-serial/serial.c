@@ -34,9 +34,7 @@ uart_t *puerto_serial = (uart_t *) (0xc0);
 
 
 #define USART_BAUDRATE 9600
-#define F_CPU 16000000UL
 #define BAUD_PRESCALE (((F_CPU/(USART_BAUDRATE*16UL)))-1)
-
 
 void serial_init() {
 
@@ -50,56 +48,39 @@ void serial_init() {
     puerto_serial->baud_rate_h = (uint8_t)(BAUD_PRESCALE >> 8);
 
     /* Activar la recepcion y transmicion */
-    puerto_serial->status_control_b = (1 << 3) | (1 << 4);
+    puerto_serial->status_control_b = (1 << 3) | (1 << 4) | (0 << 2);
     /*
     (1 << 3) el bit 3(TXEN0) activa la transmision 
     (1 << 4) bit 4 (RXEN0) Actiba la recepcion
+    (0 << 2) para establecer los 8 bits
     */
 
 	/* Configurar un frame de 8bits, con un bit de paridad y bit de stop */
-    puerto_serial->status_control_c = (1 << 1) | (1 << 2) | (0 << 3) | (0 << 6);
-    /*(1 << 1) establece el bit 1 en 1, que habilita el modo de paridad en el registro de control del USART.
+    //puerto_serial->status_control_c = (1 << 1) | (1 << 2) | (0 << 3) | (0 << 6);
 
-    (1 << 2) establece el bit 2 en 1, que selecciona el modo de paridad impar en el registro de control del USART. (DEBIA SER IMPAR PORQUE LOS BYTES SON DE 7 BITS?)
+    puerto_serial->status_control_c = (0 << 5) | (0 << 4) | (1 << 2) | (1 << 1);
+    /*
+        (0 << 5) 
+        (0 << 4) Setean la paridad
 
-    (0 << 3) establece el bit 3 en 0, lo que indica que no se utilizará un segundo bit de paridad.
-
-    (0 << 6) establece el bit 6 en 0, lo que indica que se utilizará un solo bit de stop en el marco de datos.*/
-
-	
+        (1 << 2)
+        (1 << 1) establecen 8 bits junto con el bit 2 de controlportb bit 2=0
+    */
 }
 
 
 /* enviar un byte a traves del del dispositivo inicializado */
 void serial_put_char (char c)
 {
-    /* Wait until the transmitter is ready for the next character. */
-
-    /* completar con E/S programada */
-    /* Se debe esperar verificando el bit UDREn del registro UCSRnA,
-       hasta que el buffer esté listo para recibir un dato a transmitir */
-
-    // while ( /* completar con E/S programada */ )
-    //     ;
-
-    /* Send the character via the serial port. */
-    /* (escribir el dato al registro de datos de E/S */
-
+    while(!(puerto_serial->status_control_a & (1 << 5))){ //bit 5: data registry empty
+        puerto_serial->data_es = c; //Guarda el char en el buffer
+    }
 }
-
 
 char serial_get_char(void)
 {
     /* Wait for the next character to arrive. */
-    /* Completar con E/S programada similar a serial_put_char pero 
-       utilizando el bit correcto */
+    while(!(puerto_serial->status_control_a & (1 << 7)));//bit 7: data receive completed
+    return puerto_serial->data_es;
     
-    // while ( /* completar con E/S programada */ )
-    //     ;
-
-    // return /* DEBE devolver el valor que se encuentra en el registro de datos de E/S */
-
 }
-
-
-
