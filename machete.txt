@@ -37,3 +37,5 @@ Entrega:
 1) Delay_ms, 
 2)knightrider que debe prender 
 3)apagar apretando mostrar en pantalla valores ultrasonido
+612 USART
+176 ejemplo init
