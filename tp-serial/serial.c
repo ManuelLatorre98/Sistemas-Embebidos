@@ -84,3 +84,8 @@ char serial_get_char(void)
     return puerto_serial->data_es;
     
 }
+
+int serial_getchar_ready(void)
+{
+    return (puerto_serial->status_control_a & (1 << 5));
+}

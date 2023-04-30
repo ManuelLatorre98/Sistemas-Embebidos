@@ -5,10 +5,14 @@
  **********************************************************************/
 
 #include "serial.h"
-
+#include "prueba.h"
 
 int main(void)
-{
+{   
+    /*volatile unsigned char * DDR_B = (unsigned char *) 0x24;
+    volatile unsigned char * PUERTO_B = (unsigned char *) 0X25;
+    (*DDR_B)=0b00010000;
+    (*PUERTO_B) = 0b00100000;*/
     char rcvChar = 0;
 
     /* Configure the UART for the serial driver */
@@ -22,13 +26,10 @@ int main(void)
     serial_put_char('\r');
     serial_put_char('\n');*/
 
-    while(rcvChar == 'e'){ //Cuando recibe la e larga el knight
-        rcvChar = serial_get_char();
-    }
-    printf("Input: %c",rcvChar);
-
-    /*while (rcvChar != 'q')
+    while (1)
     {
+        
+        
         // Wait for an incoming character 
         rcvChar = serial_get_char();
 
@@ -36,7 +37,14 @@ int main(void)
         serial_put_char(rcvChar);
         serial_put_char('\r');
         serial_put_char('\n');
-    }*/
+        if(rcvChar == 'e'){
+            prender();
+        }else if('a'){
+            apagar();
+        }
+        
+
+    }
 
     for (;;);
     return 0;
