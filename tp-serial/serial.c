@@ -77,6 +77,24 @@ void serial_put_char (char c)
     }
 }
 
+void serial_put_int(int value, int cant_digitos)
+{
+    char buffer[cant_digitos]; 
+    sprintf(buffer, "%d", value); // convierte el entero en una cadena de caracteres
+
+    for (int i = 0; buffer[i] != '\0'; i++) { // envía cada carácter de la cadena a través del UART
+        serial_put_char(buffer[i]);
+    }
+}
+
+void serial_put_string(const char* str) 
+{
+    int len = strlen(str);
+    for(int i=0; i<len; i++) {
+        serial_put_char(str[i]);
+    }
+}
+
 char serial_get_char(void)
 {
     /* Wait for the next character to arrive. */
