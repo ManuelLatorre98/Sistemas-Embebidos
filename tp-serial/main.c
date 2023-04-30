@@ -5,8 +5,7 @@
  **********************************************************************/
 
 #include "serial.h"
-#include "prueba.h"
-
+#include "knight_rider.h"
 int main(void)
 {   
     /*volatile unsigned char * DDR_B = (unsigned char *) 0x24;
@@ -37,10 +36,8 @@ int main(void)
         serial_put_char(rcvChar);
         serial_put_char('\r');
         serial_put_char('\n');
-        if(rcvChar == 'e'){
-            prender();
-        }else if('a'){
-            apagar();
+        if(rcvChar == 'k'){
+            knight_rider_run();
         }
         
 

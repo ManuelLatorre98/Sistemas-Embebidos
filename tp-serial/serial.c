@@ -87,5 +87,5 @@ char serial_get_char(void)
 
 int serial_getchar_ready(void)
 {
-    return (puerto_serial->status_control_a & (1 << 5));
+    return ((puerto_serial->status_control_a & (1 << 7)));
 }
