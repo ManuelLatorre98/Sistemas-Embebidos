@@ -33,7 +33,7 @@ uart_t *puerto_serial = (uart_t *) (0xc0);
 
 
 
-#define USART_BAUDRATE 9600
+#define USART_BAUDRATE 2400
 #define BAUD_PRESCALE (((F_CPU/(USART_BAUDRATE*16UL)))-1)
 
 void serial_init() {
@@ -73,8 +73,8 @@ void serial_init() {
 void serial_put_char (char c)
 {
     while(!(puerto_serial->status_control_a & (1 << 5))){ //bit 5: data registry empty
-        puerto_serial->data_es = c; //Guarda el char en el buffer
     }
+    puerto_serial->data_es = c; //Guarda el char en el buffer
 }
 
 void serial_put_int(int value, int cant_digitos)

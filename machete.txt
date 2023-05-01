@@ -18,17 +18,6 @@ make
 make clean
 make flash
 
-sudo apt-get install gcc-avr binutils-avr avr-libc  //Instala paquetes av
-
-avr-gcc -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o main.o main.c
-avr-gcc -mmcu=atmega328p main.o -o main.elf
-avr-objcopy -O ihex -R .eeprom main.elf main.hex
-avrdude -v v -v -v -p atmega328p -c arduino -P /dev/ttyUSB0 -b 115200 -D -U flash:w:main.hex:i  //dmesg devuelve el puerto tty
-
-ls -l /dev/ttyUSB*
-
-chmod +x ejecutable.sh
-
 //OSCILOSCOPIO
 pinza a gnd
 la otra a la señal

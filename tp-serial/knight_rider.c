@@ -1,14 +1,12 @@
 #include "serial.h"
-volatile unsigned char * DDR_B = (unsigned char *) 0x24;
-volatile unsigned char * PUERTO_B = (unsigned char *) 0X25;
-volatile unsigned char * PIN_B= (unsigned char *) 0X23;
-int encendido=0;
-int apretado=0;
-int input=0;
-char rcvChar='a';
+#include "globals.h"
 
 void knight_rider_run(void)
 {
+  serial_init();
+  serial_put_string("\n\rKNIGHTRIDER ENCENDIDO\n\r ");
+  encendido=0;
+  rcvChar='a';
   (*DDR_B)= 0b00110111;//bit 5= led arduino(para debugear),pb3= ENTRADA, pb0,pb1,pb2=SALIDAS
   (*PUERTO_B)= 0b00101001;//Habilita pullup en pin pb3 y enciende pin pb0,
   encendido=1;
@@ -55,6 +53,7 @@ void verif_pagar()
     if(rcvChar == 'q'){//Recibe q entonces apaga
       encendido=0;
       (*PUERTO_B)= 0b00000000; //Apaga led arduino
+      serial_put_string("\n\rKNIGHTRIDER APAGADO\n\r ");
     }
   }
 }
