@@ -28,3 +28,6 @@ Entrega:
 3)apagar apretando mostrar en pantalla valores ultrasonido
 612 USART
 176 ejemplo init
+
+//SCREEEN
+screen /dev/ttyUSB0 2400

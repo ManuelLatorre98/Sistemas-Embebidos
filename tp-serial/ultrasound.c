@@ -48,7 +48,7 @@ void verif_apagar()
     if(rcvChar == 'q'){//Recibe q entonces apaga
       encendido=0;
       (*PUERTO_B)= 0b00000000; //Apaga led arduino
-      serial_put_string("\n\rULTRASOUND APAGADO ");
+      serial_put_string("\rULTRASOUND APAGADO\n\n\r ");
     }
   }
 }

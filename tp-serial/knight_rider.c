@@ -53,7 +53,7 @@ void verif_pagar()
     if(rcvChar == 'q'){//Recibe q entonces apaga
       encendido=0;
       (*PUERTO_B)= 0b00000000; //Apaga led arduino
-      serial_put_string("\n\rKNIGHTRIDER APAGADO\n\r ");
+      serial_put_string("\rKNIGHTRIDER APAGADO\n\n\r ");
     }
   }
 }
