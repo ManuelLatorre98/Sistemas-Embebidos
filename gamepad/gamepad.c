@@ -65,7 +65,7 @@ void soltar ()
       apretado_i=0;
   }else if(bit_in_med!=0 && apretado_m==1){
     for(i=0; i<10000; i++){} 
-      serial_put_string("qm");
+      serial_put_string("qb");
       serial_put_char(' ');
       *(PUERTO_B)= *(PUERTO_B) & 0b11011111;
       apretado_m=0;
