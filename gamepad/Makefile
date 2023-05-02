@@ -1,7 +1,7 @@
 # Este Makefile es una genialidad. Usar en todo proyecto 
 
 CC=avr-gcc
-OBJETOS=gamepad.o serial.o globals.o sleep.o
+OBJETOS=gamepad.o serial.o globals.o
 APP=serial-test
 CFLAGS=-Os -DF_CPU=4000000UL -mmcu=atmega328p 
 LDFLAGS=-mmcu=atmega328p
