@@ -17,11 +17,7 @@ while read -n 1 tecla; do
         is_pressed_a=false   
         xdotool keyup "a"
         buffer=""
-<<<<<<< HEAD
-    elif [[ "$buffer" =~ qb ]]; then
-=======
     elif [[ "$buffer" =~ bq ]]; then
->>>>>>> 7142baaea55b883baea7d3106b89046887a7d24e
         is_pressed_b=false   
         xdotool keyup "b"
         buffer=""

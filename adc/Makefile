@@ -1,7 +1,7 @@
 # Este Makefile es una genialidad. Usar en todo proyecto 
 
 CC=avr-gcc
-OBJETOS=main.o utils.o
+OBJETOS=main.o adc.o serial.o sleep.o
 APP=led-test
 CFLAGS=-Os -DF_CPU=4000000UL -mmcu=atmega328p 
 LDFLAGS=-mmcu=atmega328p
