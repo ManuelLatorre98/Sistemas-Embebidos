@@ -39,7 +39,7 @@ void main(void)
 
     if(bit_in_der==0){//Si apretó (Lo comentado va junto al if del final)
       for(i=0; i<10000; i++){} 
-      serial_put_char('c');
+      serial_put_char('q');
       *(PUERTO_B)= *(PUERTO_B) | 0b00100000;//Prende PB5=d13
       apretado_d=1;
     }
