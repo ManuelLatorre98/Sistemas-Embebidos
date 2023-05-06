@@ -38,7 +38,7 @@ int adc_get(char input)//Valores 0-8
         //(0 << 3) | (0 << 2) | (0 << 1) | (0 << 0);
         adc->admux =(adc->admux & 0b11110000) | input; //En funcion al input se selecciona el adc
 
-        adc->adcsra =  (adc->admux & 0b10111111)|(1 << 6); //Comienza la conversion se pisan los bits
+        adc->adcsra =  (adc->adcsra & 0b10111111) | (1 << 6); //Comienza la conversion se pisan los bits
 
         while((adc->adcsra & (1 << 6))); //adcsra se mantiene en 1 mientras hace conversion, cuando finaliza vuelve a 0
         int low = adc->adcl;
