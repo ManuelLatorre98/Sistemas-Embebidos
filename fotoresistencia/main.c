@@ -8,10 +8,10 @@ main(void)
   adc_init();
   serial_init();
   while(1){
-    analog_in = (adc_get(0)/28); //8bits = (adc_get(0)/28), 12 bits= (adc_get(0)/455)
+    analog_in = (adc_get(0)/455); //8bits = (adc_get(0)/28), 12 bits= (adc_get(0)/455)
     sleep_ms(400);
     sleep_ms(400);
-    serial_put_int(analog_in, 6);
+    serial_put_int(analog_in, 4);
     serial_put_string("\n\r");
   }
   //dividir por 28 sumar 48 para rango de acii
