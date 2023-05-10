@@ -4,7 +4,6 @@
 main(void)
 {
   int analog_in;
-  int ohm;
   adc_init();
   serial_init();
   while(1){
@@ -14,5 +13,4 @@ main(void)
     serial_put_int(analog_in, 4);
     serial_put_string("\n\r");
   }
-  //dividir por 28 sumar 48 para rango de acii
 }
