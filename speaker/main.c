@@ -69,56 +69,8 @@ void cumple()
 		nota_tiempo(fa, 900);	
 }
 
-void marchaImperial()
-{
-    nota_tiempo(sol, 300);
-    nota_tiempo(sol, 300);
-    nota_tiempo(sol, 300);
-    nota_tiempo(fa, 100);
-    nota_tiempo(si_bemol, 100);
-    nota_tiempo(sol, 300);
-    nota_tiempo(fa, 100);
-    nota_tiempo(si_bemol, 100);
-    nota_tiempo(sol, 500);
-    nota_tiempo(re, 500);
-    nota_tiempo(sol, 500);
-    nota_tiempo(fa, 100);
-    nota_tiempo(si_bemol, 100);
-    nota_tiempo(sol, 300);
-    nota_tiempo(fa, 100);
-    nota_tiempo(si_bemol, 100);
-    nota_tiempo(sol, 500);
-    nota_tiempo(re, 500);
-    nota_tiempo(sol, 500);
-    nota_tiempo(sol, 300);
-    nota_tiempo(sol, 300);
-    nota_tiempo(sol, 300);
-    nota_tiempo(fa, 100);
-    nota_tiempo(si_bemol, 100);
-    nota_tiempo(sol, 300);
-    nota_tiempo(fa, 100);
-    nota_tiempo(si_bemol, 100);
-    nota_tiempo(sol, 500);
-    nota_tiempo(re, 500);
-    nota_tiempo(sol, 500);
-    nota_tiempo(fa, 100);
-    nota_tiempo(si_bemol, 100);
-    nota_tiempo(sol, 300);
-    nota_tiempo(fa, 100);
-    nota_tiempo(si_bemol, 100);
-    nota_tiempo(sol, 500);
-    nota_tiempo(re, 500);
-    nota_tiempo(fa, 500);
-    nota_tiempo(mi, 500);
-    nota_tiempo(do_agudo, 500);
-    nota_tiempo(si_bemol, 500);
-    nota_tiempo(si, 900);
-}
-
-
 void main() 
 {
-
 	/* utilizamos portb bit cero. D8 en arduino */
 	(* DDR_B) |= 1 << 0;
   adc_init();

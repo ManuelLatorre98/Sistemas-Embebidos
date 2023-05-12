@@ -53,4 +53,4 @@ sudo cat /dev/ttyUSB0 | while read -n 1 tecla; do
         xdotool keyup "b"
 
     fi
-done 
+done
