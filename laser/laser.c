@@ -7,23 +7,18 @@ void prende_apaga(char letra)
 {
   volatile int i;
   volatile int bit;
-  
-  *(PUERTO_B)= 0b00000001;
   volatile int aux;
   timer0_init();
   sei();
-  //INIT
 
-  (*PUERTO_B)= (*PUERTO_B) | 0b00000001; //on
-
-  while(!send){}//Espera 200ms prendido
+  while(!send){}//Espera el tiempo de la interrupcion
   (*PUERTO_B)= (*PUERTO_B) & 0b11111110; //señal de bajada
-
+  
   cli();//disable interrupt
-      send=0;
+    send=0;
   sei(); //enable interrupt
-
-  //BIT
+  
+  //ENVIO DE BITS
   for(i = 0; i < 8; i ++){   
     while(!send){}
     if(send){
@@ -38,6 +33,5 @@ void prende_apaga(char letra)
       }
     }
   }
-  while(!send){}
-
+  while(!send){}//Espera a que termine el envio del ultimo bit para que no se prenda instantaneamente a la vuelta
 }

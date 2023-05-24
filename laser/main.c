@@ -9,20 +9,20 @@ void main()
 {
   char rcv_char=' ';
   *(DDR_B)= 0b00000001;//bit 0 = salida
-
   serial_init();
   serial_put_string("EJECUTANDO.\r\n");
   for(;;){
-    (*PUERTO_B)= (*PUERTO_B) | 0b00000001; //on
+    (*PUERTO_B)= (*PUERTO_B) | 0b00000001; //El laser siempre esta prendido cuando no se esta enviando
     serial_put_string("\rIngrese una letra: \r\n");
     rcv_char = serial_get_char();
     serial_put_char(rcv_char);
     serial_put_string("\r\n");
-    print(rcv_char);
+    print(rcv_char);//Imprime bit a bit 
     serial_put_char('\r');
     serial_put_char('\n');
-    serial_put_string("ARRANCA.\r\n");
+    
     prende_apaga(rcv_char);
+    serial_put_string("FIN.\r\n");
   }
   
 }
