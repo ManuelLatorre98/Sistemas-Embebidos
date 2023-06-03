@@ -12,7 +12,6 @@ void prende_apaga(char letra)
   volatile int aux;
   timer0_init();
   sei();
-  //INIT
 
   (*PUERTO_B)= (*PUERTO_B) | 0b00000001; //on
 

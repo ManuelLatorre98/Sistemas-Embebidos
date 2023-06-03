@@ -6,7 +6,8 @@
     "punteros.h": "c",
     "knight_rider.h": "c",
     "globals.h": "c",
-    "timer.h": "c"
+    "timer.h": "c",
+    "xinu.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
