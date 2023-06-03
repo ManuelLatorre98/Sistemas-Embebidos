@@ -1,13 +1,7 @@
-/*
- * tarea_led: este programa parpadea el led de la placa.
- * 
- * Se desarrolla como un programa aislado del resto.
- */
-
 #include <xinu.h>
 
 
-int led_placa(void)
+int laser_main(void)
 {
     volatile unsigned char* DDR_B = (unsigned char*) 0x24;
     volatile unsigned char* PUERTO_B = (unsigned char*) 0x25;
@@ -16,4 +10,3 @@ int led_placa(void)
     while (1){}
 
 }
-

@@ -14,6 +14,7 @@
 extern int led_placa(void);
 extern int comunicacion(void);
 
+extern int laser_main(void);
 /* nombre para dos semaforos a utilizar */
 #define SEM_COM 0
 #define SEM_PROD 1
@@ -30,9 +31,10 @@ int main(void)
 	sync_set(SEM_PROD, 0);
 
 	/* creamos y ponemos a ejecutar dos tareas */
-	resume(create(led_placa, 64, 10, "led", 0));
-	resume(create(comunicacion, 256, 20, "comm", 0));
-
+	resume(create(laser_main, 64, 10, "laser", 0));
+	//resume(create(led_placa, 64, 10, "led", 0));
+	//resume(create(comunicacion, 256, 20, "comm", 0));
+	
 
 	while(1) {
 		sleep(1);
@@ -45,7 +47,7 @@ int main(void)
                  */
 
 		sync_wait(SEM_COM);
-			serial_put_str("hola mundo\n");
+			serial_put_string("hola mundo\n");
 		sync_signal(SEM_PROD);
 		
 		
