@@ -8,11 +8,11 @@
 #									#
 #########################################################################
 
- PLATFORM	=	-Dlgt8f328p
- HZ		=	4000000
+PLATFORM	=	-Dlgt8f328p
+HZ		=	4000000
 
-#PLATFORM	=	-DATMEGA
-#HZ		=	16000000
+# PLATFORM	=	-DATMEGA
+# HZ		=	16000000
 
 COMPILER_ROOT	=	avr-
 PNAME		=	ATMEGA328P

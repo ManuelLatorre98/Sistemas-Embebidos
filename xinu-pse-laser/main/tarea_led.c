@@ -6,14 +6,20 @@
 
 #include <xinu.h>
 
-
+ 
 int led_placa(void)
 {
     volatile unsigned char* DDR_B = (unsigned char*) 0x24;
     volatile unsigned char* PUERTO_B = (unsigned char*) 0x25;
-    *(DDR_B)= 0b00000001;//bit 0 = salida
-    (*PUERTO_B)= (*PUERTO_B) | 0b00000001;
-    while (1){}
+
+    *DDR_B = 0x20; // control: salida.
+
+    while (1){
+        sleepms(200);
+        *PUERTO_B |= 0x20; // high
+        sleepms(200);
+        *PUERTO_B = (*PUERTO_B & (~0x20)); // low
+    }
 
 }
 

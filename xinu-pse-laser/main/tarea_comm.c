@@ -20,7 +20,7 @@ int comunicacion(void)
 		 * alternada.
 		 */
 		sync_wait(SEM_PROD);
-			serial_put_string("Arriba america!\n");
+			serial_put_str("Arriba america!\n");
 		sync_signal(SEM_COM);
 		
 		sleep(2);
