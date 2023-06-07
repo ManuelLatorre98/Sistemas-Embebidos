@@ -34,3 +34,9 @@ Entrega:
 
 //SCREEEN
 screen /dev/ttyUSB0 2400
+
+
+sudo adduser <the user you want to add> dialout
+sudo reboot
+
+sudo apt-get remove modemmanager

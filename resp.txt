@@ -1,0 +1,7 @@
+xSemaphoreGive tengo que asumir que se le asigna el semaforo
+
+El create task es mas claro el segundo
+
+El mas intuitivo es el segundo porque se parece mas a la sintaxis con la que aprendimos aprendimos concu
+La api tambien es la mas facil la segunda
+y el mas legible tambien la segunda
