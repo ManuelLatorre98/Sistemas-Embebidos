@@ -10,11 +10,8 @@ void prende_apaga(char letra)
   volatile int aux;
   timer0_init();
   sei();
-<<<<<<< HEAD
-=======
 
   (*PUERTO_B)= (*PUERTO_B) | 0b00000001; //on
->>>>>>> 642afb6861cd247a0ea51a25158a427bff2d6f12
 
   while(!send){}//Espera el tiempo de la interrupcion
   (*PUERTO_B)= (*PUERTO_B) & 0b11111110; //señal de bajada

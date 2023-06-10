@@ -3,7 +3,7 @@ Archive member included to satisfy reference by file (symbol)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
                               binaries/mkbufpool.o (__mulsi3)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodhi4.o)
-                              binaries/serial.o (__divmodhi4)
+                              binaries/led_testigo.o (__divmodhi4)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
                               binaries/create.o (__divmodsi4)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
@@ -12,6 +12,8 @@ Archive member included to satisfy reference by file (symbol)
                               binaries/avr_serial.o (__do_copy_data)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_clear_bss.o)
                               binaries/avr_serial.o (__do_clear_bss)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+                              binaries/timer1.o (__usmulhisi3)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
                               binaries/sleep.o (__muluhisi3)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
@@ -23,7 +25,7 @@ Archive member included to satisfy reference by file (symbol)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
                               /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o) (__udivmodsi4)
 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
-                              /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o) (__umulhisi3)
+                              /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o) (__umulhisi3)
 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strncpy_P.o)
                               binaries/naminit.o (strncpy_P)
 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(memset.o)
@@ -66,6 +68,7 @@ buftab              0x28              binaries/bufinit.o
 mkmutex             0x2               binaries/mark.o
 count1000           0x4               binaries/clkinit.o
 clktime             0x4               binaries/clkinit.o
+ticks               0x2               binaries/timer1.o
 nbpools             0x4               binaries/bufinit.o
 queuetab            0x60              binaries/queue.o
 memlist             0x6               binaries/initialize.o
@@ -330,6 +333,7 @@ Discarded input sections
  .text          0x0000000000000000        0x0 binaries/sleep.o
  .data          0x0000000000000000        0x0 binaries/sleep.o
  .bss           0x0000000000000000        0x0 binaries/sleep.o
+ .text.sleep    0x0000000000000000       0x26 binaries/sleep.o
  .text          0x0000000000000000        0x0 binaries/suspend.o
  .data          0x0000000000000000        0x0 binaries/suspend.o
  .bss           0x0000000000000000        0x0 binaries/suspend.o
@@ -427,10 +431,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 binaries/sync.o
  .data          0x0000000000000000        0x0 binaries/sync.o
  .bss           0x0000000000000000        0x0 binaries/sync.o
- .text.sync_wait
-                0x0000000000000000       0x36 binaries/sync.o
- .text.sync_signal
-                0x0000000000000000       0x1e binaries/sync.o
  .text          0x0000000000000000        0x0 binaries/userland.o
  .data          0x0000000000000000        0x0 binaries/userland.o
  .bss           0x0000000000000000        0x0 binaries/userland.o
@@ -453,26 +453,42 @@ Discarded input sections
  .text          0x0000000000000000        0x0 binaries/namopen.o
  .data          0x0000000000000000        0x0 binaries/namopen.o
  .bss           0x0000000000000000        0x0 binaries/namopen.o
- .text          0x0000000000000000        0x0 binaries/laser.o
- .data          0x0000000000000000        0x0 binaries/laser.o
- .bss           0x0000000000000000        0x0 binaries/laser.o
+ .text          0x0000000000000000        0x0 binaries/adc.o
+ .data          0x0000000000000000        0x0 binaries/adc.o
+ .bss           0x0000000000000000        0x0 binaries/adc.o
+ .text          0x0000000000000000        0x0 binaries/globals.o
+ .data          0x0000000000000000        0x0 binaries/globals.o
+ .bss           0x0000000000000000        0x0 binaries/globals.o
+ .text          0x0000000000000000        0x0 binaries/led_testigo.o
+ .data          0x0000000000000000        0x0 binaries/led_testigo.o
+ .bss           0x0000000000000000        0x0 binaries/led_testigo.o
  .text          0x0000000000000000        0x0 binaries/main.o
  .data          0x0000000000000000        0x0 binaries/main.o
  .bss           0x0000000000000000        0x0 binaries/main.o
+ .text          0x0000000000000000        0x0 binaries/motor.o
+ .data          0x0000000000000000        0x0 binaries/motor.o
+ .bss           0x0000000000000000        0x0 binaries/motor.o
  .text          0x0000000000000000        0x0 binaries/serial.o
  .data          0x0000000000000000        0x0 binaries/serial.o
  .bss           0x0000000000000000        0x0 binaries/serial.o
- .text          0x0000000000000000        0x0 binaries/tarea_comm.o
- .data          0x0000000000000000        0x0 binaries/tarea_comm.o
- .bss           0x0000000000000000        0x0 binaries/tarea_comm.o
- .rodata.str1.1
-                0x0000000000000000       0x11 binaries/tarea_comm.o
- .text.comunicacion
-                0x0000000000000000       0x22 binaries/tarea_comm.o
- .comment       0x0000000000000000       0x12 binaries/tarea_comm.o
- .text          0x0000000000000000        0x0 binaries/tarea_led.o
- .data          0x0000000000000000        0x0 binaries/tarea_led.o
- .bss           0x0000000000000000        0x0 binaries/tarea_led.o
+ .text.serial_put_int
+                0x0000000000000000       0x7e binaries/serial.o
+ .text          0x0000000000000000        0x0 binaries/timer1.o
+ .data          0x0000000000000000        0x0 binaries/timer1.o
+ .bss           0x0000000000000000        0x0 binaries/timer1.o
+ .text.timer1_init
+                0x0000000000000000       0x32 binaries/timer1.o
+ .text.timer1_pwm_move_to
+                0x0000000000000000       0x52 binaries/timer1.o
+ .text.timer1_motor
+                0x0000000000000000       0x24 binaries/timer1.o
+ .data.timer_interrupt_flag_reg
+                0x0000000000000000        0x2 binaries/timer1.o
+ .data.timer_interrupt_mask_reg
+                0x0000000000000000        0x2 binaries/timer1.o
+ .data.timer    0x0000000000000000        0x2 binaries/timer1.o
+ .comment       0x0000000000000000       0x12 binaries/timer1.o
+ COMMON         0x0000000000000000        0x2 binaries/timer1.o
  .data          0x0000000000000000        0x0 binaries/ctxsw.o
  .bss           0x0000000000000000        0x0 binaries/ctxsw.o
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
@@ -565,9 +581,27 @@ Discarded input sections
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_clear_bss.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .text.libgcc.mul
+                0x0000000000000000        0xe /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_usmulhisi3.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
  .data          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .text.libgcc.mul
+                0x0000000000000000       0x16 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
  .text.libgcc.div
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
  .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
@@ -638,6 +672,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
  .data          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.mul
+                0x0000000000000000       0x1e /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
  .text.libgcc.div
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
  .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
@@ -784,11 +820,13 @@ LOAD binaries/mount.o
 LOAD binaries/naminit.o
 LOAD binaries/nammap.o
 LOAD binaries/namopen.o
-LOAD binaries/laser.o
+LOAD binaries/adc.o
+LOAD binaries/globals.o
+LOAD binaries/led_testigo.o
 LOAD binaries/main.o
+LOAD binaries/motor.o
 LOAD binaries/serial.o
-LOAD binaries/tarea_comm.o
-LOAD binaries/tarea_led.o
+LOAD binaries/timer1.o
 LOAD binaries/ctxsw.o
 START GROUP
 LOAD /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a
@@ -896,7 +934,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000     0x27a0
+.text           0x0000000000000000     0x2726
  *(.vectors)
  .vectors       0x0000000000000000       0x68 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega328p.o
                 0x0000000000000000                __vectors
@@ -1073,147 +1111,151 @@ END GROUP
                 0x0000000000001044                kill
  .text.kputc    0x00000000000011e2       0x22 binaries/kprintf.o
                 0x00000000000011e2                kputc
- .text.kprintf  0x0000000000001204       0x5a binaries/kprintf.o
+ .text.kprintf  0x0000000000001204       0x56 binaries/kprintf.o
                 0x0000000000001204                kprintf
- .text.meminit  0x000000000000125e       0x6e binaries/meminit.o
-                0x000000000000125e                meminit
+ .text.meminit  0x000000000000125a       0x6e binaries/meminit.o
+                0x000000000000125a                meminit
  .text.newqueue
-                0x00000000000012cc       0x64 binaries/newqueue.o
-                0x00000000000012cc                newqueue
- .text.open     0x0000000000001330       0x72 binaries/open.o
-                0x0000000000001330                open
+                0x00000000000012c8       0x64 binaries/newqueue.o
+                0x00000000000012c8                newqueue
+ .text.open     0x000000000000132c       0x72 binaries/open.o
+                0x000000000000132c                open
  .text.platinit
-                0x00000000000013a2        0xc binaries/platinit.o
-                0x00000000000013a2                platinit
- .text.dequeue  0x00000000000013ae       0x5e binaries/queue.o
-                0x00000000000013ae                dequeue
- .text.ready    0x000000000000140c       0x40 binaries/ready.o
-                0x000000000000140c                ready
- .text.resched  0x000000000000144c      0x10a binaries/resched.o
-                0x000000000000144c                resched
+                0x000000000000139e        0xc binaries/platinit.o
+                0x000000000000139e                platinit
+ .text.dequeue  0x00000000000013aa       0x5e binaries/queue.o
+                0x00000000000013aa                dequeue
+ .text.ready    0x0000000000001408       0x40 binaries/ready.o
+                0x0000000000001408                ready
+ .text.resched  0x0000000000001448      0x10a binaries/resched.o
+                0x0000000000001448                resched
  .text.resched_cntl
-                0x0000000000001556       0x98 binaries/resched.o
-                0x0000000000001556                resched_cntl
- .text.resume   0x00000000000015ee       0x6a binaries/resume.o
-                0x00000000000015ee                resume
- .text.send     0x0000000000001658       0x96 binaries/send.o
-                0x0000000000001658                send
- .text.sleepms  0x00000000000016ee       0x88 binaries/sleep.o
-                0x00000000000016ee                sleepms
- .text.sleep    0x0000000000001776       0x22 binaries/sleep.o
-                0x0000000000001776                sleep
- .text.unsleep  0x0000000000001798       0x9c binaries/unsleep.o
-                0x0000000000001798                unsleep
- .text.userret  0x0000000000001834        0x4 binaries/userret.o
-                0x0000000000001834                userret
- .text.wakeup   0x0000000000001838       0x58 binaries/wakeup.o
-                0x0000000000001838                wakeup
- .text.xdone    0x0000000000001890        0x8 binaries/xdone.o
-                0x0000000000001890                xdone
- .text.yield    0x0000000000001898       0x12 binaries/yield.o
-                0x0000000000001898                yield
+                0x0000000000001552       0x98 binaries/resched.o
+                0x0000000000001552                resched_cntl
+ .text.resume   0x00000000000015ea       0x6a binaries/resume.o
+                0x00000000000015ea                resume
+ .text.send     0x0000000000001654       0x96 binaries/send.o
+                0x0000000000001654                send
+ .text.sleepms  0x00000000000016ea       0x88 binaries/sleep.o
+                0x00000000000016ea                sleepms
+ .text.unsleep  0x0000000000001772       0x9c binaries/unsleep.o
+                0x0000000000001772                unsleep
+ .text.userret  0x000000000000180e        0x4 binaries/userret.o
+                0x000000000000180e                userret
+ .text.wakeup   0x0000000000001812       0x58 binaries/wakeup.o
+                0x0000000000001812                wakeup
+ .text.xdone    0x000000000000186a        0x8 binaries/xdone.o
+                0x000000000000186a                xdone
+ .text.yield    0x0000000000001872       0x12 binaries/yield.o
+                0x0000000000001872                yield
  .text.avr_kprintf
-                0x00000000000018aa        0x2 binaries/avr_printf.o
-                0x00000000000018aa                avr_kprintf
+                0x0000000000001884        0x2 binaries/avr_printf.o
+                0x0000000000001884                avr_kprintf
  .text.sync_set
-                0x00000000000018ac       0x1c binaries/sync.o
-                0x00000000000018ac                sync_set
- .text.namlen   0x00000000000018c8       0x3a binaries/mount.o
-                0x00000000000018c8                namlen
- .text.mount    0x0000000000001902      0x12a binaries/mount.o
-                0x0000000000001902                mount
- .text.naminit  0x0000000000001a2c      0x10e binaries/naminit.o
-                0x0000000000001a2c                naminit
- .text.namrepl  0x0000000000001b3a      0x182 binaries/nammap.o
-                0x0000000000001b3a                namrepl
- .text.namcpy   0x0000000000001cbc       0x42 binaries/nammap.o
-                0x0000000000001cbc                namcpy
- .text.nammap   0x0000000000001cfe       0x7e binaries/nammap.o
-                0x0000000000001cfe                nammap
- .text.namopen  0x0000000000001d7c       0x4a binaries/namopen.o
-                0x0000000000001d7c                namopen
- .text.prende_apaga
-                0x0000000000001dc6       0xbc binaries/laser.o
-                0x0000000000001dc6                prende_apaga
- .text.print    0x0000000000001e82       0x5e binaries/laser.o
-                0x0000000000001e82                print
- .text.main_laser
-                0x0000000000001ee0       0x6e binaries/laser.o
-                0x0000000000001ee0                main_laser
+                0x0000000000001886       0x1c binaries/sync.o
+                0x0000000000001886                sync_set
+ .text.sync_wait
+                0x00000000000018a2       0x2e binaries/sync.o
+                0x00000000000018a2                sync_wait
+ .text.sync_signal
+                0x00000000000018d0       0x1a binaries/sync.o
+                0x00000000000018d0                sync_signal
+ .text.namlen   0x00000000000018ea       0x3a binaries/mount.o
+                0x00000000000018ea                namlen
+ .text.mount    0x0000000000001924      0x12a binaries/mount.o
+                0x0000000000001924                mount
+ .text.naminit  0x0000000000001a4e      0x10e binaries/naminit.o
+                0x0000000000001a4e                naminit
+ .text.namrepl  0x0000000000001b5c      0x182 binaries/nammap.o
+                0x0000000000001b5c                namrepl
+ .text.namcpy   0x0000000000001cde       0x42 binaries/nammap.o
+                0x0000000000001cde                namcpy
+ .text.nammap   0x0000000000001d20       0x7e binaries/nammap.o
+                0x0000000000001d20                nammap
+ .text.namopen  0x0000000000001d9e       0x4a binaries/namopen.o
+                0x0000000000001d9e                namopen
+ .text.adc_init
+                0x0000000000001de8       0x12 binaries/adc.o
+                0x0000000000001de8                adc_init
+ .text.adc_get  0x0000000000001dfa       0x26 binaries/adc.o
+                0x0000000000001dfa                adc_get
+ .text.check_estado_led
+                0x0000000000001e20       0x40 binaries/led_testigo.o
+                0x0000000000001e20                check_estado_led
+ .text.main_led_testigo
+                0x0000000000001e60       0x84 binaries/led_testigo.o
+                0x0000000000001e60                main_led_testigo
  .text.startup.main
-                0x0000000000001f4e       0x78 binaries/main.o
-                0x0000000000001f4e                main
+                0x0000000000001ee4       0xba binaries/main.o
+                0x0000000000001ee4                main
+ .text.check_estado
+                0x0000000000001f9e       0x32 binaries/motor.o
+                0x0000000000001f9e                check_estado
+ .text.main_motor
+                0x0000000000001fd0       0x32 binaries/motor.o
+                0x0000000000001fd0                main_motor
  .text.serial_init
-                0x0000000000001fc6       0x18 binaries/serial.o
-                0x0000000000001fc6                serial_init
+                0x0000000000002002       0x18 binaries/serial.o
+                0x0000000000002002                serial_init
  .text.serial_put_char
-                0x0000000000001fde       0x12 binaries/serial.o
-                0x0000000000001fde                serial_put_char
+                0x000000000000201a       0x12 binaries/serial.o
+                0x000000000000201a                serial_put_char
  .text.serial_get_char
-                0x0000000000001ff0       0x12 binaries/serial.o
-                0x0000000000001ff0                serial_get_char
+                0x000000000000202c       0x12 binaries/serial.o
+                0x000000000000202c                serial_get_char
  .text.serial_put_str
-                0x0000000000002002       0x1e binaries/serial.o
-                0x0000000000002002                serial_put_str
- .text.serial_put_int
-                0x0000000000002020       0x76 binaries/serial.o
-                0x0000000000002020                serial_put_int
- .text.led_placa
-                0x0000000000002096       0x1e binaries/tarea_led.o
-                0x0000000000002096                led_placa
+                0x000000000000203e       0x1e binaries/serial.o
+                0x000000000000203e                serial_put_str
+ .text.serial_getchar_ready
+                0x000000000000205c       0x10 binaries/serial.o
+                0x000000000000205c                serial_getchar_ready
  .text.libgcc.div
-                0x00000000000020b4       0x26 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodhi4.o)
-                0x00000000000020b4                __divmodhi4
-                0x00000000000020b4                _div
+                0x000000000000206c       0x26 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodhi4.o)
+                0x000000000000206c                __divmodhi4
+                0x000000000000206c                _div
  .text.libgcc.div
-                0x00000000000020da       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
-                0x00000000000020da                __divmodsi4
+                0x0000000000002092       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+                0x0000000000002092                __divmodsi4
  .text.libgcc.div
-                0x0000000000002102       0x10 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
-                0x0000000000002102                __negsi2
- .text.libgcc.mul
-                0x0000000000002112       0x14 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
-                0x0000000000002112                __muluhisi3
+                0x00000000000020ba       0x10 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+                0x00000000000020ba                __negsi2
  .text.libgcc.prologue
-                0x0000000000002126       0x38 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
-                0x0000000000002126                __prologue_saves__
+                0x00000000000020ca       0x38 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
+                0x00000000000020ca                __prologue_saves__
  .text.libgcc.prologue
-                0x000000000000215e       0x36 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_epilogue.o)
-                0x000000000000215e                __epilogue_restores__
+                0x0000000000002102       0x36 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_epilogue.o)
+                0x0000000000002102                __epilogue_restores__
  .text.libgcc.div
-                0x0000000000002194       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodhi4.o)
-                0x0000000000002194                __udivmodhi4
+                0x0000000000002138       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000002138                __udivmodhi4
  .text.libgcc.div
-                0x00000000000021bc       0x44 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
-                0x00000000000021bc                __udivmodsi4
- .text.libgcc.mul
-                0x0000000000002200       0x1e /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
-                0x0000000000002200                __umulhisi3
+                0x0000000000002160       0x44 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+                0x0000000000002160                __udivmodsi4
  .text.avr-libc
-                0x000000000000221e       0x1e /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strncpy_P.o)
-                0x000000000000221e                strncpy_P
+                0x00000000000021a4       0x1e /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strncpy_P.o)
+                0x00000000000021a4                strncpy_P
  .text.avr-libc
-                0x000000000000223c        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(memset.o)
-                0x000000000000223c                memset
+                0x00000000000021c2        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(memset.o)
+                0x00000000000021c2                memset
  .text.avr-libc
-                0x000000000000224a       0x52 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vsnprintf.o)
-                0x000000000000224a                vsnprintf
+                0x00000000000021d0       0x52 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vsnprintf.o)
+                0x00000000000021d0                vsnprintf
  .text.avr-libc
-                0x000000000000229c      0x3a4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                0x000000000000229c                vfprintf
+                0x0000000000002222      0x3a4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                0x0000000000002222                vfprintf
  .text.avr-libc
-                0x0000000000002640       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen_P.o)
-                0x0000000000002640                strnlen_P
+                0x00000000000025c6       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                0x00000000000025c6                strnlen_P
  .text.avr-libc
-                0x0000000000002656       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen.o)
-                0x0000000000002656                strnlen
+                0x00000000000025dc       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen.o)
+                0x00000000000025dc                strnlen
  .text.avr-libc
-                0x000000000000266c       0x78 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fputc.o)
-                0x000000000000266c                fputc
+                0x00000000000025f2       0x78 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fputc.o)
+                0x00000000000025f2                fputc
  .text.avr-libc
-                0x00000000000026e4       0xbc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
-                0x00000000000026e4                __ultoa_invert
-                0x00000000000027a0                . = ALIGN (0x2)
+                0x000000000000266a       0xbc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
+                0x000000000000266a                __ultoa_invert
+                0x0000000000002726                . = ALIGN (0x2)
  *(.fini9)
  *(.fini9)
  *(.fini8)
@@ -1234,9 +1276,9 @@ END GROUP
  *(.fini1)
  *(.fini0)
  *(.fini0)
-                0x00000000000027a0                _etext = .
+                0x0000000000002726                _etext = .
 
-.data           0x0000000000800100       0x78 load address 0x00000000000027a0
+.data           0x0000000000800100       0x70 load address 0x0000000000002726
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1245,39 +1287,51 @@ END GROUP
                 0x0000000000800100                kserial_port
  .data.nextqid.2808
                 0x0000000000800102        0x2 binaries/newqueue.o
+ .data.adc      0x0000000000800104        0x2 binaries/adc.o
+                0x0000000000800104                adc
+ .data.PIN_B    0x0000000000800106        0x2 binaries/globals.o
+                0x0000000000800106                PIN_B
  .data.PUERTO_B
-                0x0000000000800104        0x2 binaries/laser.o
-                0x0000000000800104                PUERTO_B
- .data.DDR_B    0x0000000000800106        0x2 binaries/laser.o
-                0x0000000000800106                DDR_B
+                0x0000000000800108        0x2 binaries/globals.o
+                0x0000000000800108                PUERTO_B
+ .data.DDR_B    0x000000000080010a        0x2 binaries/globals.o
+                0x000000000080010a                DDR_B
  .data.puerto_serial
-                0x0000000000800108        0x2 binaries/serial.o
-                0x0000000000800108                puerto_serial
+                0x000000000080010c        0x2 binaries/serial.o
+                0x000000000080010c                puerto_serial
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x000000000080010a       0x2f binaries/initialize.o
+                0x000000000080010e       0x2f binaries/initialize.o
  .rodata.str1.1
-                0x0000000000800139        0x6 binaries/naminit.o
+                0x000000000080013d        0x6 binaries/naminit.o
                                           0x7 (size before relaxing)
  .rodata.str1.1
-                0x000000000080013f       0x30 binaries/laser.o
-                                         0x33 (size before relaxing)
- .rodata.str1.1
-                0x000000000080016f        0x8 binaries/main.o
+                0x0000000000800143       0x2d binaries/main.o
  *(.gnu.linkonce.r*)
-                0x0000000000800178                . = ALIGN (0x2)
- *fill*         0x0000000000800177        0x1 
-                0x0000000000800178                _edata = .
-                0x0000000000800178                PROVIDE (__data_end, .)
+                0x0000000000800170                . = ALIGN (0x2)
+                0x0000000000800170                _edata = .
+                0x0000000000800170                PROVIDE (__data_end, .)
 
-.bss            0x0000000000800178      0x29c
-                0x0000000000800178                PROVIDE (__bss_start, .)
+.bss            0x0000000000800170      0x2a4
+                0x0000000000800170                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.nextpid.2834
-                0x0000000000800178        0x4 binaries/create.o
+                0x0000000000800170        0x4 binaries/create.o
+ .bss.motor_speed
+                0x0000000000800174        0x2 binaries/globals.o
+                0x0000000000800174                motor_speed
+ .bss.motor_init
+                0x0000000000800176        0x2 binaries/globals.o
+                0x0000000000800176                motor_init
+ .bss.initiated_led
+                0x0000000000800178        0x2 binaries/led_testigo.o
+                0x0000000000800178                initiated_led
+ .bss.initiated_motor
+                0x000000000080017a        0x2 binaries/motor.o
+                0x000000000080017a                initiated_motor
  *(COMMON)
  COMMON         0x000000000080017c        0x1 binaries/avr_serial.o
                 0x000000000080017c                value
@@ -1310,8 +1364,8 @@ END GROUP
                 0x00000000008003bc                nnames
                 0x00000000008003c0                nametab
                 0x0000000000800414                PROVIDE (__bss_end, .)
-                0x00000000000027a0                __data_load_start = LOADADDR (.data)
-                0x0000000000002818                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000002726                __data_load_start = LOADADDR (.data)
+                0x0000000000002796                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0000000000800414        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
@@ -1405,10 +1459,12 @@ END GROUP
  .comment       0x0000000000000011       0x12 binaries/naminit.o
  .comment       0x0000000000000011       0x12 binaries/nammap.o
  .comment       0x0000000000000011       0x12 binaries/namopen.o
- .comment       0x0000000000000011       0x12 binaries/laser.o
+ .comment       0x0000000000000011       0x12 binaries/adc.o
+ .comment       0x0000000000000011       0x12 binaries/globals.o
+ .comment       0x0000000000000011       0x12 binaries/led_testigo.o
  .comment       0x0000000000000011       0x12 binaries/main.o
+ .comment       0x0000000000000011       0x12 binaries/motor.o
  .comment       0x0000000000000011       0x12 binaries/serial.o
- .comment       0x0000000000000011       0x12 binaries/tarea_led.o
  .comment       0x0000000000000011       0x12 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vsnprintf.o)
  .comment       0x0000000000000011       0x12 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
  .comment       0x0000000000000011       0x12 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fputc.o)

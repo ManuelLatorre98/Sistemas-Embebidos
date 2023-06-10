@@ -7,7 +7,8 @@
     "knight_rider.h": "c",
     "globals.h": "c",
     "timer.h": "c",
-    "xinu.h": "c"
+    "xinu.h": "c",
+    "random": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

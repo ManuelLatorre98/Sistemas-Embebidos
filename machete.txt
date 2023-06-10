@@ -40,3 +40,5 @@ sudo adduser <the user you want to add> dialout
 sudo reboot
 
 sudo apt-get remove modemmanager
+
+65000: 16 bits valor maximo sleep
