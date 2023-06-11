@@ -11,7 +11,7 @@ int main_motor(void)
     //check_estado();
     if(motor_init){
       motor_speed = (adc_get(0)/102);//10 posibles valores
-      timer1_motor(motor_speed)
+      timer1_motor(motor_speed);
     }
     sleepms(1);//Para que libere CPU y pueda correr main
   }

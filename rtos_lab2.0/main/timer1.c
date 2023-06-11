@@ -27,7 +27,7 @@
 
 /* Macros de valores */
 #define MIN_PWM_8P 2000
-#define MAX_PWM_8P 3999
+#define MAX_PWM_8P 0x9c3f//3999
 #define TIMER1_FREQ_H 0x9c
 #define TIMER1_FREQ_L 0x3f
 #define TIMER1_0CR1AH_POS 0x0f
@@ -102,13 +102,20 @@ int timer1_pwm_move_to(int grade)
 
 int timer1_motor(int speed)
 {
-    uint16_t pwmValue = MIN_PWM_8P + ((MAX_PWM_8P - MIN_PWM_8P) / 10) * speed;
-    uint8_t high = (pwmValue >> 8);
-    uint8_t low = pwmValue;
+    long int init_value, temp;
+        uint8_t low, high;
 
-    /* Determinamos el ancho de la señal en alto en cada ciclo con los registros OCR1A */
-    timer->out_compare_reg_ah = high;
-    timer->out_compare_reg_al = low;
+        // if (grade < 0 || grade > 180)
+        //         return 1;
 
-    return 0;
+        init_value = speed * 100 / 180;
+        temp = MIN_PWM_8P + (MAX_PWM_8P - MIN_PWM_8P) / 100 * init_value;
+        high = (temp >> 8);
+        low = temp;
+
+        /* determinamos el ancho de la senial en alto en cada ciclo con el registro OCR1A */
+        timer->out_compare_reg_ah = high;
+        timer->out_compare_reg_al = low;
+
+        return 0;
 }
