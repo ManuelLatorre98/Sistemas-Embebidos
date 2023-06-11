@@ -6,5 +6,5 @@ extern volatile unsigned char * PUERTO_B;
 extern volatile unsigned char * PIN_B;
 extern volatile int motor_init;
 extern volatile int motor_speed;
-
+extern volatile int cerv_angle;
 #endif

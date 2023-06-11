@@ -1,9 +1,7 @@
 #include <xinu.h>
 #include "serial.h"
 #include "globals.h"
-/* volatile int initiated_led=0; */
 int bit_in = 0;
-
 int main_led_testigo(void)
 {
   *(DDR_B)= 0b00100000;//bit 5= led arduino, 
@@ -24,8 +22,6 @@ int main_led_testigo(void)
 
 void parpadeo()
 {
-  
-
   if(!bit_in){
     *(PUERTO_B) |= (1 << 5);//Prende
   }else{
@@ -40,15 +36,5 @@ void parpadeo()
     sleepms(500/motor_speed);
   }
 }
-
-/* void check_estado_led()
-{ 
-  if(!motor_init || !initiated_led){//Si venia apagado y se prende
-    (*PUERTO_B) &= ~(1 << 5); //Apaga led arduino
-    initiated_led=0;
-    sync_wait(SEM_LED);//Se bloquea hasta que lo desbloquee el main
-    initiated_led=1;
-  }
-} */
 
 

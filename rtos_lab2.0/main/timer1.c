@@ -27,7 +27,8 @@
 
 /* Macros de valores */
 #define MIN_PWM_8P 2000
-#define MAX_PWM_8P 0x9c3f//3999
+#define MAX_PWM_8P_CERVO 3999
+#define MAX_PWM_8P_MOTOR 0x9c3f
 #define TIMER1_FREQ_H 0x9c
 #define TIMER1_FREQ_L 0x3f
 #define TIMER1_0CR1AH_POS 0x0f
@@ -80,7 +81,7 @@ int timer1_init()
 /**
  * GRADE: para posicionar el servo (min 0 y max 180)
  */
-int timer1_pwm_move_to(int grade)
+int timer1_cervo(int grade)
 {
         long int init_value, temp;
         uint8_t low, high;
@@ -89,7 +90,7 @@ int timer1_pwm_move_to(int grade)
         //         return 1;
 
         init_value = grade * 100 / 180;
-        temp = MIN_PWM_8P + (MAX_PWM_8P - MIN_PWM_8P) / 100 * init_value;
+        temp = MIN_PWM_8P + (MAX_PWM_8P_CERVO - MIN_PWM_8P) / 100 * init_value;
         high = (temp >> 8);
         low = temp;
 
@@ -109,7 +110,7 @@ int timer1_motor(int speed)
         //         return 1;
 
         init_value = speed * 100 / 180;
-        temp = MIN_PWM_8P + (MAX_PWM_8P - MIN_PWM_8P) / 100 * init_value;
+        temp = MIN_PWM_8P + (MAX_PWM_8P_MOTOR - MIN_PWM_8P) / 100 * init_value;
         high = (temp >> 8);
         low = temp;
 
