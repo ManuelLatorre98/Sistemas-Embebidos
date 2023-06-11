@@ -11,5 +11,5 @@
 
 int timer1_init();
 int timer1_pwm_move_to(int grade);
-
+int timer1_motor(int speed);
 #endif /* _TIMER1_H */

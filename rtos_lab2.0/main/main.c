@@ -1,6 +1,7 @@
 #include <xinu.h>
 #include "serial.h"
 #include "globals.h"
+#include "timer1.h"
 /* definicion de tareas (cuyo codigo fuente es externo) */
 
 extern int main_motor(void);
@@ -12,7 +13,7 @@ int main(void)
 	char rcv_char=' ';
 	serial_init();
 	adc_init();
-	
+	timer1_init();
 	/* creamos y ponemos a ejecutar dos tareas */
 	resume(create(main_motor, 256, 30, "motr", 0));
 	resume(create(main_led_testigo, 256, 30, "led", 0));
