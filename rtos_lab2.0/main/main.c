@@ -15,15 +15,18 @@ int main(void)
 	serial_init();
 	adc_init();
 	timer1_init();
+	*(DDR_B)|= 0b00100010;//bit 5= led arduino, 
+  *(PUERTO_B)&= 0b11011101;
 	/* creamos y ponemos a ejecutar dos tareas */
 	
-	resume(create(main_motor, 256, 30, "motr", 0));
-	resume(create(main_led_testigo, 256, 30, "led", 0));
+	resume(create(main_motor, 128, 30, "motr", 0));
+	resume(create(main_led_testigo, 64, 30, "led", 0));
 	resume(create(main_cervo, 256, 30, "cerv", 0));
-	
+	//RTC CON 64 bytes
+	//OTRO QUE IMPRIMA 64
 	serial_put_str("\rRTOS_LAB INICIADO\r\n");
 
-	
+
 	while(1) {
 		if(serial_getchar_ready()){
 			rcv_char= serial_get_char();

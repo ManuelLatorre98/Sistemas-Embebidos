@@ -4,9 +4,9 @@
 int bit_in = 0;
 int main_led_testigo(void)
 {
-  *(DDR_B)= 0b00100000;//bit 5= led arduino, 
-  *(PUERTO_B)= 0b00000001;//Habilita pullup en pin pb0
+  serial_put_char('O');
   while(1){
+    serial_put_char('P');
     //check_estado_led();
     bit_in = *(PIN_B) & 0b00100000;//Revisa estado actual del led
     if(motor_init){

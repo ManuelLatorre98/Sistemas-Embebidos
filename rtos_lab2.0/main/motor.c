@@ -5,12 +5,15 @@
 //volatile int initiated_motor=0;
 int main_motor(void)
 {
-  *(DDR_B)= 0b00100000;//bit 5= led arduino, 
-  *(PUERTO_B)= 0b00000001;//Habilita pullup en pin pb0
+  serial_put_char('M');
   while(1){
+    serial_put_char('N');
     if(motor_init){
       motor_speed = (adc_get(0)/102);//10 posibles valores
+    
       timer1_motor(motor_speed);
+    }else{
+      timer1_motor(0);
     }
     sleepms(1);//Para que libere CPU y pueda correr main
   }
