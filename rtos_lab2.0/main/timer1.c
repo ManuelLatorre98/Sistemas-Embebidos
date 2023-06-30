@@ -69,9 +69,11 @@ int timer1_init()
         timer->in_capture_regl = TIMER1_FREQ_L;
 
         /* determinamos el ancho de la senial en alto en cada ciclo con el registro OCR1A */
-        timer->out_compare_reg_ah = TIMER1_0CR1AH_POS;
-        timer->out_compare_reg_al = TIMER1_0CR1AL_POS;
+        timer->out_compare_reg_ah = 0;
+        timer->out_compare_reg_al = 0;
 
+        timer->out_compare_reg_bh = 0;
+        timer->out_compare_reg_bl = 0;
         /* reiniciamos los registros del contador (por las dudas) */
         timer->counter_reg_l = 0;
         timer->counter_reg_h = 0;
@@ -95,8 +97,8 @@ int timer1_cervo(int grade)
         low = temp;
 
         /* determinamos el ancho de la senial en alto en cada ciclo con el registro OCR1A */
-        timer->out_compare_reg_ah = high;
-        timer->out_compare_reg_al = low;
+        timer->out_compare_reg_bh = high;
+        timer->out_compare_reg_bl = low;
 
         return 0;
 }
@@ -109,10 +111,10 @@ int timer1_motor(int speed)
         // if (grade < 0 || grade > 180)
         //         return 1;
 
-        init_value = speed * 100 / 180;
-        temp = MIN_PWM_8P + (MAX_PWM_8P_MOTOR - MIN_PWM_8P) / 100 * init_value;
-        high = (temp >> 8);
-        low = temp;
+        init_value = ((speed*(MAX_PWM_8P_MOTOR/10)));
+        //temp = MIN_PWM_8P + (MAX_PWM_8P_MOTOR - MIN_PWM_8P) / 100 * init_value;
+        high = (init_value >> 8);
+        low = init_value;
 
         /* determinamos el ancho de la senial en alto en cada ciclo con el registro OCR1A */
         timer->out_compare_reg_ah = high;
