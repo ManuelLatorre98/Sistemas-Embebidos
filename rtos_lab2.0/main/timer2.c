@@ -4,7 +4,7 @@
 #include "serial.h"
 
 /* Macros para la configuracion de los registros de control */
-#define CONF_CONTROL_REG_A_FPWM 0b10000010 // [COM2A1|COM2A0]  clear on match  - [WGM21|WGM20]         fast PWM
+#define CONF_CONTROL_REG_A_FPWM 0b10000011 // [COM2A1|COM2A0]  clear on match  - [WGM21|WGM20] fast PWM
 #define CONF_CONTROL_REG_B_FPWM 0b00001010 // [WGM22]          fast PWM        - [CS22|CS21|CS20]      prescaler 8
 
 /********************** Calculos de valores ***************************
@@ -17,11 +17,11 @@
 
 /* Macros de valores */
 #define MIN_PWM_8P 2000
-#define MAX_PWM_8P 3999
 #define MAX_PWM_8P_CERVO 3999
 #define MAX_PWM_8P_MOTOR 0x9c3f
-#define TIMER2_FREQ_H 0x9c
-#define TIMER2_FREQ_L 0x3f
+#define TIMER2_FREQ 0x9c3f
+#define TIMER1_0CR1AH_POS 0x0f
+#define TIMER1_0CR1AL_POS 0x9f
 
 
 /* Estructura de datos del driver TIMER */
@@ -39,6 +39,10 @@ volatile timer2_t *timer2 = (timer2_t *)0xB0; // Direccion base
 volatile uint8_t *timer_interrupt_mask_reg_t2 = (uint8_t *)0x70; // TIMSK2
 volatile uint8_t *timer_interrupt_flag_reg_t2 = (uint8_t *)0x37; // TIFR2 (no se si sirve de algo)
 
+volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x70; // TIMSK2
+volatile uint8_t *timer_interrupt_flag_reg = (uint8_t *)0x37; // TIFR2 (no se si sirve de algo)
+
+
 volatile int ticks;
 
 int timer2_init()
@@ -48,10 +52,8 @@ int timer2_init()
     timer2->control_reg_b |= CONF_CONTROL_REG_B_FPWM;
 
     /* determinar la frecuencia con el registro OCR2A */
-    timer2->compare_reg_a = TIMER2_FREQ_L;
+    //timer2->compare_reg_a = TIMER2_FREQ;
 
-    /* determinar el ancho de la senal en alto en cada ciclo con el registro OCR2B */
-    timer2->compare_reg_b = MAX_PWM_8P;
 
     /* reiniciar el registro del contador (por las dudas) */
     timer2->counter_reg = 0;
