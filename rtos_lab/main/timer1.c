@@ -12,7 +12,7 @@
 #include "serial.h"
 
 /* Macros para la configuracion de los registros de control */
-#define CONF_CONTROL_REG_A_FPWM 0b10000010; // [COM1A1|COM1A2]  clear on match  - [WGM11|WGM10]         fast PWM
+#define CONF_CONTROL_REG_A_FPWM 0b10100010; // [COM1A1|COM1A2] [COM1B1|COM1B2]  clear on match  - [WGM11|WGM10]         fast PWM
 #define CONF_CONTROL_REG_B_FPWM 0b00011010; // [WGM13|WGM12]    fast PWM        - [CS02|CS01|CS00]      preescale 8
 #define CONF_CONTROL_REG_C_FPWM 0b00000000; //
 
@@ -26,8 +26,9 @@
  **********************************************************************/
 
 /* Macros de valores */
-#define MIN_PWM_8P 2000
-#define MAX_PWM_8P 3999
+#define MIN_PWM_8P 0x03e8//0x07d0
+#define MAX_PWM_8P_SERVO 0x1130//0x0f9f
+#define MAX_PWM_8P_MOTOR 0x9c3f
 #define TIMER1_FREQ_H 0x9c
 #define TIMER1_FREQ_L 0x3f
 #define TIMER1_0CR1AH_POS 0x0f
@@ -68,9 +69,11 @@ int timer1_init()
         timer->in_capture_regl = TIMER1_FREQ_L;
 
         /* determinamos el ancho de la senial en alto en cada ciclo con el registro OCR1A */
-        timer->out_compare_reg_ah = TIMER1_0CR1AH_POS;
-        timer->out_compare_reg_al = TIMER1_0CR1AL_POS;
+        timer->out_compare_reg_ah = 0;
+        timer->out_compare_reg_al = 0;
 
+        timer->out_compare_reg_bh = 0;
+        timer->out_compare_reg_bl = 0;
         /* reiniciamos los registros del contador (por las dudas) */
         timer->counter_reg_l = 0;
         timer->counter_reg_h = 0;
@@ -80,35 +83,35 @@ int timer1_init()
 /**
  * GRADE: para posicionar el servo (min 0 y max 180)
  */
-int timer1_pwm_move_to(int grade)
+int timer1_servo(int grade)
 {
         long int init_value, temp;
         uint8_t low, high;
 
-        // if (grade < 0 || grade > 180)
-        //         return 1;
-
         init_value = grade * 100 / 180;
-        temp = MIN_PWM_8P + (MAX_PWM_8P - MIN_PWM_8P) / 100 * init_value;
+        temp = MIN_PWM_8P + (MAX_PWM_8P_SERVO - MIN_PWM_8P) / 100 * init_value;
         high = (temp >> 8);
         low = temp;
 
         /* determinamos el ancho de la senial en alto en cada ciclo con el registro OCR1A */
-        timer->out_compare_reg_ah = high;
-        timer->out_compare_reg_al = low;
+        timer->out_compare_reg_bh = high;
+        timer->out_compare_reg_bl = low;
 
         return 0;
 }
 
 int timer1_motor(int speed)
 {
-    uint16_t pwmValue = MIN_PWM_8P + ((MAX_PWM_8P - MIN_PWM_8P) / 10) * speed;
-    uint8_t high = (pwmValue >> 8);
-    uint8_t low = pwmValue;
+    long int init_value, temp;
+        uint8_t low, high;
 
-    /* Determinamos el ancho de la señal en alto en cada ciclo con los registros OCR1A */
-    timer->out_compare_reg_ah = high;
-    timer->out_compare_reg_al = low;
+        init_value = ((speed*(MAX_PWM_8P_MOTOR/10)));
+        high = (init_value >> 8);
+        low = init_value;
 
-    return 0;
+        /* determinamos el ancho de la senial en alto en cada ciclo con el registro OCR1A */
+        timer->out_compare_reg_ah = high;
+        timer->out_compare_reg_al = low;
+
+        return 0;
 }

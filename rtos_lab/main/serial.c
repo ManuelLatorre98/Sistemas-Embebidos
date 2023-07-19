@@ -112,6 +112,14 @@ void serial_put_str(char * str)
     serial_put_char('\n');
 }
 
+void serial_put_str_inline(char * str)
+{
+    while (*str) {
+        serial_put_char(*str);
+        str++;
+    }
+}
+
 void serial_put_int(int val, int digitos)
 {
     int tmp, i = digitos;
