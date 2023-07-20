@@ -4,10 +4,18 @@
 #include "serial.h"
 
 /* Macros para la configuracion de los registros de control */
-#define CONF_CONTROL_REG_A_FPWM 0b10000011 // [COM2A1|COM2A0]  clear on match  - [WGM21|WGM20] fast PWM
-#define CONF_CONTROL_REG_B_FPWM 0b00001010 // [WGM22]          fast PWM        - [CS22|CS21|CS20]      prescaler 8
+#define CONF_CONTROL_REG_A_FPWM 0b10100011 // [COM2A1|COM2A0]  clear on match  - [WGM21|WGM20] fast PWM
+#define CONF_CONTROL_REG_B_FPWM 0b00000101// [WGM22]          fast PWM        - [CS22|CS21|CS20]      prescaler 8
 
-/********************** Calculos de valores ***************************
+/********************** Calculos de valores TIMER1 ***************************
+ *
+ * f_cpu/prescaler = 16000000/8 = 2000000 t/s
+ * FREQ: 2000000 t/s * 0.020  = 40000 = 0x9c40
+ * MIN:  2000000 t/s * 0.001  = 2000  = 0x07d0
+ * MAX:  2000000 t/s * 0.002  = 4000  = 0x0fa0
+ **********************************************************************/
+
+/********************** Calculos de valores TIMER 2***************************
  *
  * f_cpu/prescaler = 16000000/8 = 2000000 t/s
  * FREQ: 2000000 t/s * 0.020  = 40000 = 0x9c40
@@ -66,12 +74,19 @@ int timer2_init()
 
 int timer2_servo(int grade)
 {
-        /* long int init_value, temp;
+        long int init_value, temp;
         init_value = grade * 100 / 180;//100
         temp = MIN_PWM_8P + (MAX_PWM_8P_SERVO - MIN_PWM_8P) / 100 * init_value;
         temp = temp - MIN_PWM_8P;//Diferencia relativa al valor min
-        temp = (temp * 255) / (MAX_PWM_8P_SERVO - MIN_PWM_8P); //Valor normalizado */
-        timer2->out_compare_reg_a = 50;
+        temp = (temp * 255) / (MAX_PWM_8P_SERVO - MIN_PWM_8P); //Valor normalizado 
+        timer2->out_compare_reg_a = temp;
+        //1ms=125 2ms=250, entre 140 y 145 cambia
 
+
+        //Anda con preescalar 8 y el modo 3
+        //todo ver señal con osciloscopio
+        //!140 se frena, con 100 cambia sentido horario,120retiene mas lento, 160 antihorario
+        //!Estoy 40 mas arriba comparado con el comportamiento del timer 1
+      
         return 0;
 }

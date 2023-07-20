@@ -9,7 +9,9 @@
     "timer.h": "c",
     "xinu.h": "c",
     "random": "c",
-    "stdint.h": "c"
+    "stdint.h": "c",
+    "timer1.h": "c",
+    "timer2.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

@@ -2,6 +2,7 @@
 #include "serial.h"
 #include "globals.h"
 #include "timer1.h"
+#include "timer2.h"
 /* definicion de tareas (cuyo codigo fuente es externo) */
 
 extern int main_motor(void);
