@@ -5,7 +5,7 @@
 
 /* Macros para la configuracion de los registros de control */
 #define CONF_CONTROL_REG_A_FPWM 0b10100011 // [COM2A1|COM2A0]  clear on match  - [WGM21|WGM20] fast PWM
-#define CONF_CONTROL_REG_B_FPWM 0b00000101// [WGM22]          fast PWM        - [CS22|CS21|CS20]      prescaler 8
+#define CONF_CONTROL_REG_B_FPWM 0b00000111// [WGM22]          fast PWM        - [CS22|CS21|CS20]      prescaler 8
 
 /********************** Calculos de valores TIMER1 ***************************
  *
@@ -21,15 +21,10 @@
  * FREQ: 2000000 t/s * 0.020  = 40000 = 0x9c40
  * MIN:  2000000 t/s * 0.001  = 2000  = 0x07d0
  * MAX:  2000000 t/s * 0.002  = 4000  = 0x0fa0
+ * 16000000/1024 = 15625
+ * 255/15625 = 0.01632
  **********************************************************************/
 
-/********************** Calculos de valores ***************************
- *
- * f_cpu/prescaler = 16000000/64 = 250000 t/s
- * FREQ: 250000 t/s * 0.020  = 40000 = 0x9c40
- * MIN:  2000000 t/s * 0.001  = 2000  = 0x07d0
- * MAX:  2000000 t/s * 0.002  = 4000  = 0x0fa0
- **********************************************************************/
 
 /* Macros de valores */
 #define MIN_PWM_8P 2000

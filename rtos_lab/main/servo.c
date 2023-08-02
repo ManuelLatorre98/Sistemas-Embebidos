@@ -10,8 +10,8 @@ int main_servo(void)
   while(1){
     
     if(last_angle != serv_angle){
-      //timer2_servo(serv_angle);
-      timer1_servo(serv_angle);
+      timer2_servo(serv_angle);
+      //timer1_servo(serv_angle);//T:20ms F:50hz
       last_angle=serv_angle;
       //serial_put_int(last_angle,3);
     }
