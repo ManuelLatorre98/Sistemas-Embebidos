@@ -51,7 +51,7 @@ void timer0_init( void )
 ISR(TIMER0_COMPA_vect)
 {
   ticks++;
-  if(ticks==50){ 
+  if(ticks==5 0){ 
     send=1;
     ticks=0;
   }
