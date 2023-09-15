@@ -8,22 +8,15 @@
 
 #include <stdint.h>
 #include <avr/interrupt.h>
+#include "globals.h"
 #include "timer1.h"
 #include "serial.h"
+
 
 /* Macros para la configuracion de los registros de control */
 #define CONF_CONTROL_REG_A_FPWM 0b10100010; // [COM1A1|COM1A2] [COM1B1|COM1B2]  clear on match  - [WGM11|WGM10]         fast PWM
 #define CONF_CONTROL_REG_B_FPWM 0b00011010; // [WGM13|WGM12]    fast PWM        - [CS02|CS01|CS00]      preescale 8
 #define CONF_CONTROL_REG_C_FPWM 0b00000000; //
-
-/********************** Calculos de valores ***************************
- *
- * f_cpu/prescalar = 16000000/8 = 2000000 t/s
- * FREQ: 2000000 t/s * 0.020  = 39999 = 0x9c3f
- * MIN:  2000000 t/s * 0.001  = 2000  = 0x07d0
- * MAX:  2000000 t/s * 0.002  = 3999  = 0x0f9f
- * 2000000 t/s * 0.0025  = 3999  = 0x1194
- **********************************************************************/
 
 /********************** Calculos de valores ***************************
  *
@@ -46,13 +39,13 @@
 #define CLOCK_FREQ = 16000000
 #define PRESCALER = 8
 
-#define MIN_PWM_8P 0x03e8				// 0x07d0
+/* #define MIN_PWM_8P 0x03e8				// 0x07d0
 #define MAX_PWM_8P_SERVO 0x1130 // 0x0f9f
 #define MAX_PWM_8P_MOTOR 0x9c3f
 #define TIMER1_FREQ_H 0x9c
 #define TIMER1_FREQ_L 0x3f
 #define TIMER1_0CR1AH_POS 0x0f
-#define TIMER1_0CR1AL_POS 0x9f
+#define TIMER1_0CR1AL_POS 0x9f */
 
 /* Estructura de datos del driver TIMER */
 typedef struct
@@ -76,6 +69,8 @@ volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x6f; // TIMSK1
 volatile uint8_t *timer_interrupt_flag_reg = (uint8_t *)0x36; // TIFR1 (no se si sirve de algo)
 
 volatile int ticks;
+volatile int servo_angles_len = sizeof(servo_angles) / sizeof(mi_array[0]);
+uint8_t pinMask;
 
 int timer1_init()
 {
@@ -97,6 +92,26 @@ int timer1_init()
 
 // Función de interrupción del timer (Deberia ejecutarse cada 2ms)
 ISR(TIMER1_COMPA_vect) {
-    // Interrupciones
+	ticks++;
+	if(ticks == TICKS_UNTIL_20ms) //Fin del ciclo del servo
+	{
+		ticks=0;
+		for(int i = 0; i<servo_angles_len; i++){
+			pinMask= 1<<i; 
+			(*PUERTO_B)|=pinMask; //pin up a cada pin
+			servo_angles[i]=0; //
+		}
+	}else{
+		for(int i = 0; i<servo_angles_len; i++){
+			if(ticks == getTicksOffset(servo_angles[i]))
+			{ //Si estoy en los ticks que pide el servo
+				pinMask= 0<<i; 
+				(*PUERTO_B)|=pinMask; //Pin down sobre el servo
+			}
+		}
+	}
 }
-
+int getTicksOffset(int angle)
+{
+	return TICKS_UNTIL_1ms + (angle* 2.777);
+}
