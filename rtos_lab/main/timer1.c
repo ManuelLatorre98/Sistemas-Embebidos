@@ -72,7 +72,7 @@ typedef struct
 } volatile timer1_t;
 volatile timer1_t *timer = (timer1_t *)0x80; // Direccion base
 
-volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x6f; // TIMSK
+volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x6f; // TIMSK1
 volatile uint8_t *timer_interrupt_flag_reg = (uint8_t *)0x36; // TIFR1 (no se si sirve de algo)
 
 volatile int ticks;
@@ -89,13 +89,14 @@ int timer1_init()
 	/* Determinamos el ancho de la señal en alto en cada ciclo con el registro OCR1A */
 	timer->out_compare_reg_ah = (uint8_t)(ocr_value >> 8); // Byte alto de OCR1A
 	timer->out_compare_reg_al = (uint8_t)(ocr_value & 0xFF); // Byte bajo de OCR1A
-//todo configurar timsk1
+
+	/* Habilito interrupciones del timer1 para el registro A */
+	timer_interrupt_mask_reg |= (1 << 1);
 	return 0;
 }
 
-// Función de interrupción del timer
+// Función de interrupción del timer (Deberia ejecutarse cada 2ms)
 ISR(TIMER1_COMPA_vect) {
-    // Esta función se ejecutará cuando ocurra la interrupción de comparación de salida A
-    // Puedes realizar acciones basadas en el tiempo aquí
+    // Interrupciones
 }
 
