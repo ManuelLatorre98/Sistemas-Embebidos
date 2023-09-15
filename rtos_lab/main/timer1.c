@@ -66,7 +66,7 @@ typedef struct
 volatile timer1_t *timer = (timer1_t *)0x80; // Direccion base
 
 volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x6f; // TIMSK1
-volatile uint8_t *timer_interrupt_flag_reg = (uint8_t *)0x36; // TIFR1 (no se si sirve de algo)
+//volatile uint8_t *timer_interrupt_flag_reg = (uint8_t *)0x36; // TIFR1 (no se si sirve de algo)
 
 volatile int ticks;
 volatile int servo_angles_len = sizeof(servo_angles) / sizeof(mi_array[0]);
@@ -111,6 +111,7 @@ ISR(TIMER1_COMPA_vect) {
 		}
 	}
 }
+
 int getTicksOffset(int angle)
 {
 	return TICKS_UNTIL_1ms + (angle* 2.777);
