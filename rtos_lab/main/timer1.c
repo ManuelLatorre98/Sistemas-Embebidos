@@ -14,8 +14,8 @@
 
 
 /* Macros para la configuracion de los registros de control */
-#define CONF_CONTROL_REG_A_FPWM 0b10100010; // [COM1A1|COM1A2] [COM1B1|COM1B2]  clear on match  - [WGM11|WGM10]         fast PWM
-#define CONF_CONTROL_REG_B_FPWM 0b00011010; // [WGM13|WGM12]    fast PWM        - [CS02|CS01|CS00]      preescale 8
+#define CONF_CONTROL_REG_A_FPWM 0b10100000; // [COM1A1|COM1A2] [COM1B1|COM1B2]  clear on match  - [WGM11|WGM10]         fast PWM
+#define CONF_CONTROL_REG_B_FPWM 0b00001001; // [WGM13|WGM12]    fast PWM        - [CS02|CS01|CS00]      preescale 8
 #define CONF_CONTROL_REG_C_FPWM 0b00000000; //
 
 /********************** Calculos de valores ***************************
@@ -30,14 +30,27 @@
  *
 
  **********************************************************************/
+/********************** Calculos de valores ***************************
+ *
+ * f_cpu/prescalar = 16000000/1 = 16000000 t/s = 16 ticks por us
+ * 1000us/16t/us = 16000 ticks necesarios para llegar a 1ms
+ * 32000 ticks necesarios para llegar a 2ms
+ * 16000*20 = 320000 ticks para llegar a 20ms (FIN DE CICLO DEL SERVO)
+ * Tengo 16000 posibles valores para indicar angulos
+ * 16000 / 180 = 88.8888889
+ * Si recibo valores entre 0 y 180 hago 500 + (val*88.9) = cantidad de ticks necesarios (que va en el array de los servos)
+ * Quiero interrumpir cada 5.5us entonces 16*5=80ticks en 0,5us=8ticks --> 5.5us=88ticks
+ *
 
+ **********************************************************************/
 /* Macros de valores */
-#define TICKS_UNTIL_1ms 500
-#define TICKS_UNTIL_2ms 1000
-#define TICKS_UNTIL_20ms 10000
-#define TICK_OFFSET 2.777 // 0x07d0
-#define CLOCK_FREQ = 16000000
-#define PRESCALER = 8
+#define TICKS_UNTIL_1ms 16000
+#define TICKS_UNTIL_2ms 32000
+#define TICKS_UNTIL_20ms 320000
+#define TICK_OFFSET 88.888 
+#define TICKS_UNTIL_INTERRUPT 88
+#define CLOCK_FREQ 16000000
+#define PRESCALER 1
 
 /* #define MIN_PWM_8P 0x03e8				// 0x07d0
 #define MAX_PWM_8P_SERVO 0x1130 // 0x0f9f
@@ -68,8 +81,7 @@ volatile timer1_t *timer = (timer1_t *)0x80; // Direccion base
 volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x6f; // TIMSK1
 //volatile uint8_t *timer_interrupt_flag_reg = (uint8_t *)0x36; // TIFR1 (no se si sirve de algo)
 
-volatile int ticks;
-volatile int servo_angles_len = sizeof(servo_angles) / sizeof(mi_array[0]);
+unsigned long int ticks = 0;
 uint8_t pinMask;
 
 int timer1_init()
@@ -79,40 +91,50 @@ int timer1_init()
 	timer->control_reg_b |= CONF_CONTROL_REG_B_FPWM;
 	timer->control_reg_c |= CONF_CONTROL_REG_C_FPWM;
 
-	uint16_t ocr_value = 1; // Quiero una interrupción cada 2us
+	uint16_t ocr_value = TICKS_UNTIL_INTERRUPT; // Quiero una interrupción cada 5.5us=88ticks
 
 	/* Determinamos el ancho de la señal en alto en cada ciclo con el registro OCR1A */
 	timer->out_compare_reg_ah = (uint8_t)(ocr_value >> 8); // Byte alto de OCR1A
 	timer->out_compare_reg_al = (uint8_t)(ocr_value & 0xFF); // Byte bajo de OCR1A
 
 	/* Habilito interrupciones del timer1 para el registro A */
-	timer_interrupt_mask_reg |= (1 << 1);
+	*timer_interrupt_mask_reg |= 2;
 	return 0;
 }
 
+unsigned long int getTicksOffset(int angle)
+{
+  unsigned long int result= TICKS_UNTIL_1ms + (angle * TICK_OFFSET);
+	return result;
+}
 // Función de interrupción del timer (Deberia ejecutarse cada 2ms)
 ISR(TIMER1_COMPA_vect) {
 	ticks++;
-	if(ticks == TICKS_UNTIL_20ms) //Fin del ciclo del servo
+  if(ticks==300000){
+    (*PUERTO_B)=0;
+  }else if(ticks==600000){
+    (*PUERTO_B)=7;
+    ticks=0;
+  }
+  //(*PUERTO_B)=0;
+	/* if(ticks == 320000) //Fin del ciclo del servo
 	{
 		ticks=0;
-		for(int i = 0; i<servo_angles_len; i++){
-			pinMask= 1<<i; 
+		for(int i = 0; i<N_SERVOS; i++){
+			pinMask= (1<<i); 
 			(*PUERTO_B)|=pinMask; //pin up a cada pin
-			servo_angles[i]=0; //
+			//servo_angles[i]=0; //
 		}
-	}else{
-		for(int i = 0; i<servo_angles_len; i++){
+	}else if(ticks>=16000 && ticks<=32000){
+    for(int i = 0; i<N_SERVOS; i++){
 			if(ticks == getTicksOffset(servo_angles[i]))
 			{ //Si estoy en los ticks que pide el servo
-				pinMask= 0<<i; 
-				(*PUERTO_B)|=pinMask; //Pin down sobre el servo
+				pinMask= (0<<i); 
+				(*PUERTO_B)&=pinMask; //Pin down sobre el servo
 			}
 		}
-	}
+  } */
+		
 }
 
-int getTicksOffset(int angle)
-{
-	return TICKS_UNTIL_1ms + (angle* 2.777);
-}
+

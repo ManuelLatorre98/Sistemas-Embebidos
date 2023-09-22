@@ -18,15 +18,19 @@ int main_show_data(void)
     serial_put_int(min,2);
     serial_put_char(':');
     serial_put_int(seg,2);
-    serial_put_str_inline(". velocidad: ");
-    serial_put_int(motor_speed*10,3);
-    serial_put_str_inline("%. servo:");
-    serial_put_int(serv_angle,3);
-    serial_put_str_inline(" grados.");
+    serial_put_str_inline("%. servos:");
+    print_servo_array();
     serial_put_str(" ");//Esto me genera un salto de linea
     sleep(1);
   }
 }
 
-
+void print_servo_array(){
+  serial_put_str_inline("[");
+	for(int i = 0; i<N_SERVOS; i++){
+		serial_put_int(servo_angles[i],3);
+    serial_put_str_inline(", ");
+	}
+  serial_put_str_inline("] ");
+}
 

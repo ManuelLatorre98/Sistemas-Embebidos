@@ -1,11 +1,9 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
-
+#define N_SERVOS 4
 extern volatile unsigned char * DDR_B;
 extern volatile unsigned char * PUERTO_B;
 extern volatile unsigned char * PIN_B;
-extern volatile int motor_init;
-extern volatile int motor_speed;
-extern volatile int serv_angle;
+extern volatile int servo_angles[N_SERVOS]; //Array que contiene los ticks necesarios por los servos
 extern unsigned volatile int seconds;
 #endif
