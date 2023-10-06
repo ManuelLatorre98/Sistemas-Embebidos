@@ -90,7 +90,6 @@ volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x6f; // TIMSK1
 
 unsigned long int ticks = 0;
 uint8_t pinMask;
-
 int timer1_init()
 {
 	/* setear la configuracion del timer1  */
@@ -133,7 +132,7 @@ ISR(TIMER1_COMPA_vect) {
 		}
 	}else if(ticks >= TICKS_UNTIL_1ms && ticks <= TICKS_UNTIL_2ms){
     for(int i = 0; i<N_SERVOS; i++){
-			if(ticks == getTicksOffset(servo_angles[i]))
+			if(ticks == getTicksOffset(servo_angles[i])) //todo corregir esto que se haga en main
 			{ //Si estoy en los ticks que pide el servo
 				pinMask= (0<<i); 
 				(*PUERTO_B)&=pinMask; //Pin down sobre el servo

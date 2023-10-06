@@ -12,19 +12,19 @@ int main(void)
 {
 	char rcv_char = ' ';
 	serial_init();
-	adc_init();
 	
 	*(DDR_B) |= 0b00101111; // bit 5= led arduino, pb0,1,2,3,4 = salidas de servos
 	*(PUERTO_B) |= 0b00101111;//Arranca con las señales todas en alto. El led encendido
-	sleep(5);
+	//sleep(5);
 	timer1_init();
 	
 	/* creamos y ponemos a ejecutar las tareas */
-	resume(create(main_rtc, 128, 30, "rtc", 0));
-	resume(create(main_show_data, 128, 30, "show", 0));
+/* 	resume(create(main_rtc, 60, 30, "rtc", 0));
+	resume(create(main_show_data, 60, 30, "sho", 0)); */
 
 	serial_put_str("\rRTOS_LAB INICIADO\r\n");
 /* 	sei(); */
+	print_array();
 	while (1)
 	{
 		if (serial_getchar_ready())
@@ -35,7 +35,9 @@ int main(void)
 				adjust_servo_angle(rcv_char,0); //todo luego agregar la referencia al servo como param
 			}
 		} 
-		sleepms(30);
+		
+		//sleepms(30); //!ver porque no funciona el sleepms
+	
 	
 	}
 	return 0;
@@ -45,9 +47,11 @@ void adjust_servo_angle(char rcv_char, int servo_index)
 {
 	if (rcv_char == 'a')
 	{
+		
 		if (servo_angles[servo_index] > 0)
 		{
 			servo_angles[servo_index] -= 20;
+			print_array();
 		}
 	}
 	else if (rcv_char == 'd')
@@ -55,8 +59,17 @@ void adjust_servo_angle(char rcv_char, int servo_index)
 		if (servo_angles[servo_index] < 180)
 		{
 			servo_angles[servo_index] += 20;
+			print_array();
 		}
 	}
 }
 
+void print_array(){
+  serial_put_str_inline("[");
+	for(int i = 0; i<N_SERVOS; i++){
+		serial_put_int(servo_angles[i],3);
+    serial_put_str_inline(", ");
+	}
+  serial_put_str_inline("] ");
+}
 
