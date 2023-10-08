@@ -19,18 +19,6 @@
 #define CONF_CONTROL_REG_C_FPWM 0b00000000; 
 /********************** Calculos de valores ***************************
  *
- * f_cpu/prescalar = 16000000/8 = 2000000 t/s = 2 ticks por us
- * 1000us/2t/us = 500 ticks necesarios para llegar a 1ms
- * 1000 ticks necesarios para llegar a 2ms
- * 500*20 = 10000 ticks para llegar a 20ms (FIN DE CICLO DEL SERVO)
- * Tengo 500 posibles valores para indicar angulos
- * 500 / 180 = 2.777
- * Si recibo valores entre 0 y 180 hago 500 + (val*2.777) = cantidad de ticks necesarios (que va en el array de los servos)
- *
-
- **********************************************************************/
-/********************** Calculos de valores ***************************
- *
  * f_cpu/prescalar = 16000000/1 = 16000000 t/s = 16 ticks por us
  * 1000us/16t/us = 16000 ticks necesarios para llegar a 1ms
  * 32000 ticks necesarios para llegar a 2ms
@@ -54,18 +42,9 @@ NUEVOS CALCULOS
 #define TICKS_UNTIL_1ms 182
 #define TICKS_UNTIL_2ms 364
 #define TICKS_UNTIL_20ms 3637
-#define TICK_OFFSET 88.888 
-#define TICKS_UNTIL_INTERRUPT 88
+#define TICKS_UNTIL_INTERRUPT 88 //todo verificar periodo modificando esto
 #define CLOCK_FREQ 16000000
 #define PRESCALER 1
-
-/* #define MIN_PWM_8P 0x03e8				// 0x07d0
-#define MAX_PWM_8P_SERVO 0x1130 // 0x0f9f
-#define MAX_PWM_8P_MOTOR 0x9c3f
-#define TIMER1_FREQ_H 0x9c
-#define TIMER1_FREQ_L 0x3f
-#define TIMER1_0CR1AH_POS 0x0f
-#define TIMER1_0CR1AL_POS 0x9f */
 
 /* Estructura de datos del driver TIMER */
 typedef struct
@@ -88,7 +67,7 @@ volatile timer1_t *timer = (timer1_t *)0x80; // Direccion base
 volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x6f; // TIMSK1
 //volatile uint8_t *timer_interrupt_flag_reg = (uint8_t *)0x36; // TIFR1 (no se si sirve de algo)
 
-unsigned long int ticks = 0;
+unsigned int ticks = 0;
 uint8_t pinMask;
 int timer1_init()
 {
@@ -108,11 +87,7 @@ int timer1_init()
 	return 0;
 }
 
-unsigned long int getTicksOffset(int angle)
-{
-  unsigned long int result= TICKS_UNTIL_1ms + angle;
-	return result;
-}
+
 // Función de interrupción del timer (Deberia ejecutarse cada 2ms)
 ISR(TIMER1_COMPA_vect) {
 	ticks++; //Esto se incrementa cada 5.5us
@@ -132,14 +107,11 @@ ISR(TIMER1_COMPA_vect) {
 		}
 	}else if(ticks >= TICKS_UNTIL_1ms && ticks <= TICKS_UNTIL_2ms){
     for(int i = 0; i<N_SERVOS; i++){
-			if(ticks == getTicksOffset(servo_angles[i])) //todo corregir esto que se haga en main
+			if(ticks == servo_ticks[i])
 			{ //Si estoy en los ticks que pide el servo
 				pinMask= (0<<i); 
 				(*PUERTO_B)&=pinMask; //Pin down sobre el servo
 			}
 		}
   }
-		
 }
-
-

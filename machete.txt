@@ -42,3 +42,9 @@ sudo reboot
 sudo apt-get remove modemmanager
 
 65000: 16 bits valor maximo sleep
+
+//LIBRERIAS XINU
+bison
+flex
+gawk
+build-essential
