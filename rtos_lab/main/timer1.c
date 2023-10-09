@@ -42,7 +42,7 @@ NUEVOS CALCULOS
 #define TICKS_UNTIL_1ms 182
 #define TICKS_UNTIL_2ms 364
 #define TICKS_UNTIL_20ms 3637
-#define TICKS_UNTIL_INTERRUPT 88 //todo verificar periodo modificando esto
+#define TICKS_UNTIL_INTERRUPT 81 //! estaba en 88
 #define CLOCK_FREQ 16000000
 #define PRESCALER 1
 
