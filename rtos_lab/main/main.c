@@ -4,9 +4,7 @@
 #include "timer1.h"
 #include <avr/interrupt.h>
 /* definicion de tareas (cuyo codigo fuente es externo) */
-#define TICKS_UNTIL_1ms 200
-extern int main_rtc(void);
-extern int main_show_data(void);
+#define TICKS_UNTIL_1ms 182
 
 int main(void)
 {

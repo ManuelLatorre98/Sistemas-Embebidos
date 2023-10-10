@@ -38,14 +38,32 @@ NUEVOS CALCULOS
  * todo por ahora voy a despreciar dos grados osea voy a usar tal cual los ticks recibidos
  * Si recibo valores entre 0 y 180 hago 182 + val = cantidad de ticks necesarios (que va en el array de los servos) 
  **********************************************************************/
-/* Macros de valores */
-#define TICKS_UNTIL_1ms 182
-#define TICKS_UNTIL_2ms 364
-#define TICKS_UNTIL_20ms 3637
-#define TICKS_UNTIL_INTERRUPT 81 //! estaba en 88
-#define CLOCK_FREQ 16000000
-#define PRESCALER 1
 
+/********************** Calculos de valores ***************************
+
+CALCULO DE TICKS DEL ARDUINO CON PRESCALAR 8
+ * f_cpu/prescalar = 16000000/8 = 2000000 t/s = 2 ticks por us
+ * 2*5 = 10 ticks por 5us
+ * 1 tick = 0.5us
+ * 10 ticks + 1 tick = 11 ticks para los 5.5us
+
+ CALCULO DE TICKS CONTADOS POR LA INTERRUPCION 
+ * Voy a interrumpir cada 5.5us por lo tanto 
+ * Hasta los 20ms necesito 20000us/5.5us=3637 ticks (contados) //!redondeado hacia arriba
+ * Hasta los 2ms necesito 2000us/5.5us=364 ticks (contados) //!redondeado hacia arriba
+ * Hasta 1ms necesito 1000us/5.5us=182 ticks (contados)	//!redondeado hacia arriba
+ * Tengo 182 posibles valores para indicar angulos
+ * todo por ahora voy a despreciar dos grados osea voy a usar tal cual los ticks recibidos
+ * Si recibo valores entre 0 y 180 hago 182 + val = cantidad de ticks necesarios (que va en el array de los servos) 
+ **********************************************************************/
+
+/* Macros de valores */
+#define TICKS_UNTIL_1ms 182  //182
+#define TICKS_UNTIL_2ms 364		//364
+#define TICKS_UNTIL_20ms 3637		//3637
+#define TICKS_UNTIL_INTERRUPT 81		//88
+#define CLOCK_FREQ 16000000 
+#define PRESCALER 1
 /* Estructura de datos del driver TIMER */
 typedef struct
 {
@@ -67,7 +85,7 @@ volatile timer1_t *timer = (timer1_t *)0x80; // Direccion base
 volatile uint8_t *timer_interrupt_mask_reg = (uint8_t *)0x6f; // TIMSK1
 //volatile uint8_t *timer_interrupt_flag_reg = (uint8_t *)0x36; // TIFR1 (no se si sirve de algo)
 
-unsigned int ticks = 0;
+int ticks = 0;
 uint8_t pinMask;
 int timer1_init()
 {
@@ -101,12 +119,12 @@ ISR(TIMER1_COMPA_vect) {
 	if(ticks == TICKS_UNTIL_20ms) //Fin del ciclo del servo
 	{
 		ticks=0;
-		for(int i = 0; i<N_SERVOS; i++){
+		for(int i = 0; i < N_SERVOS; i++){
 			pinMask= (1<<i); 
 			(*PUERTO_B)|=pinMask; //pin up a cada pin
 		}
 	}else if(ticks >= TICKS_UNTIL_1ms && ticks <= TICKS_UNTIL_2ms){
-    for(int i = 0; i<N_SERVOS; i++){
+    for(int i = 0; i < N_SERVOS; i++){
 			if(ticks == servo_ticks[i])
 			{ //Si estoy en los ticks que pide el servo
 				pinMask= (0<<i); 
