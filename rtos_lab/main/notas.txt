@@ -1,0 +1,22 @@
+//Variante 4 servos
+Los servos se enumeran de la base hacia arriba
+Stick 1 :
+  Izquierda, derecha controla servo 0 (la base rotatoria)
+  Arriba, abajo controla servo 1 (el servo que tira hacia abajo y adelante al brazo)
+Stick 2:
+  Arriba, abajo controla servo 3 (el codo)
+  Izquierda, derecha controla servo 4 (La garrita abre cierra)
+
+
+
+
+//Variante 5 servos
+Los servos se enumeran de la base hacia arriba
+Stick 1 :
+  Izquierda, derecha controla servo 0 (la base rotatoria)
+  Arriba, abajo controla servo 1 (el servo que tira hacia abajo y adelante al brazo)
+  click del stick (si es que se puede) controla servo 5 (la garrita para que se abra)
+Stick 2:
+  Arriba, abajo controla servo 3 (el codo)
+  Izquierda, derecha controla servo 4 (La garrita)
+  click del stick (si es que se puede) controla servo 5 (la garrita para que se cierre)
