@@ -1238,7 +1238,7 @@ END GROUP
  *(.fini0)
                 0x0000000000002514                _etext = .
 
-.data           0x0000000000800100       0x68 load address 0x0000000000002514
+.data           0x0000000000800100       0x60 load address 0x0000000000002514
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1247,43 +1247,43 @@ END GROUP
                 0x0000000000800100                kserial_port
  .data.nextqid.2808
                 0x0000000000800102        0x2 binaries/newqueue.o
- .data.servo_angles
-                0x0000000000800104        0x8 binaries/globals.o
-                0x0000000000800104                servo_angles
  .data.PUERTO_B
-                0x000000000080010c        0x2 binaries/globals.o
-                0x000000000080010c                PUERTO_B
- .data.DDR_B    0x000000000080010e        0x2 binaries/globals.o
-                0x000000000080010e                DDR_B
+                0x0000000000800104        0x2 binaries/globals.o
+                0x0000000000800104                PUERTO_B
+ .data.DDR_B    0x0000000000800106        0x2 binaries/globals.o
+                0x0000000000800106                DDR_B
  .data.puerto_serial
-                0x0000000000800110        0x2 binaries/serial.o
-                0x0000000000800110                puerto_serial
+                0x0000000000800108        0x2 binaries/serial.o
+                0x0000000000800108                puerto_serial
  .data.timer_interrupt_mask_reg
-                0x0000000000800112        0x2 binaries/timer1.o
-                0x0000000000800112                timer_interrupt_mask_reg
- .data.timer    0x0000000000800114        0x2 binaries/timer1.o
-                0x0000000000800114                timer
+                0x000000000080010a        0x2 binaries/timer1.o
+                0x000000000080010a                timer_interrupt_mask_reg
+ .data.timer    0x000000000080010c        0x2 binaries/timer1.o
+                0x000000000080010c                timer
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000800116       0x2f binaries/initialize.o
+                0x000000000080010e       0x2f binaries/initialize.o
  .rodata.str1.1
-                0x0000000000800145        0x6 binaries/naminit.o
+                0x000000000080013d        0x6 binaries/naminit.o
                                           0x7 (size before relaxing)
  .rodata.str1.1
-                0x000000000080014b       0x1d binaries/main.o
+                0x0000000000800143       0x1d binaries/main.o
  *(.gnu.linkonce.r*)
-                0x0000000000800168                . = ALIGN (0x2)
-                0x0000000000800168                _edata = .
-                0x0000000000800168                PROVIDE (__data_end, .)
+                0x0000000000800160                . = ALIGN (0x2)
+                0x0000000000800160                _edata = .
+                0x0000000000800160                PROVIDE (__data_end, .)
 
-.bss            0x0000000000800168      0x37a
-                0x0000000000800168                PROVIDE (__bss_start, .)
+.bss            0x0000000000800160      0x382
+                0x0000000000800160                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.nextpid.2834
-                0x0000000000800168        0x4 binaries/create.o
+                0x0000000000800160        0x4 binaries/create.o
+ .bss.servo_angles
+                0x0000000000800164        0x8 binaries/globals.o
+                0x0000000000800164                servo_angles
  .bss.servo_ticks
                 0x000000000080016c        0x8 binaries/globals.o
                 0x000000000080016c                servo_ticks
@@ -1322,7 +1322,7 @@ END GROUP
                 0x00000000008004e1                pinMask
                 0x00000000008004e2                PROVIDE (__bss_end, .)
                 0x0000000000002514                __data_load_start = LOADADDR (.data)
-                0x000000000000257c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000002574                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00000000008004e2        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
