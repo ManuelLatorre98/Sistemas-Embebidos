@@ -127,9 +127,9 @@ ISR(TIMER1_COMPA_vect) {
     for(int i = 0; i < N_SERVOS; i++){
 			if(ticks == servo_ticks[i])
 			{ //Si estoy en los ticks que pide el servo
-			//Seteo pinmask en 1 a full y pongo en 0 el pin i
-				pinMask= (0<<i); //todo Corregir
-				(*PUERTO_B)&=pinMask; //Pin down sobre el servo
+				pinMask = 11111111;
+				pinMask &= ~(1 << i); 
+				(*PUERTO_B) &= pinMask; //Pin down sobre el servo
 			}
 		}
   }
