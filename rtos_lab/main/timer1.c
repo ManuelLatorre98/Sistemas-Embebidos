@@ -59,9 +59,9 @@ CALCULO DE TICKS DEL ARDUINO CON PRESCALAR 8
 
 /* Macros de valores */
 #define TICKS_UNTIL_1ms 182  //182
-#define TICKS_UNTIL_2ms 364		//364
+#define TICKS_UNTIL_2ms 282		//364
 #define TICKS_UNTIL_20ms 3637		//3637
-#define TICKS_UNTIL_INTERRUPT 81		//88
+#define TICKS_UNTIL_INTERRUPT 83		//88
 #define CLOCK_FREQ 16000000 
 #define PRESCALER 1
 /* Estructura de datos del driver TIMER */
@@ -127,7 +127,8 @@ ISR(TIMER1_COMPA_vect) {
     for(int i = 0; i < N_SERVOS; i++){
 			if(ticks == servo_ticks[i])
 			{ //Si estoy en los ticks que pide el servo
-				pinMask= (0<<i); 
+			//Seteo pinmask en 1 a full y pongo en 0 el pin i
+				pinMask= (0<<i); //todo Corregir
 				(*PUERTO_B)&=pinMask; //Pin down sobre el servo
 			}
 		}
