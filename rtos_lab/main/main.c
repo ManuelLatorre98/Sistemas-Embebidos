@@ -32,7 +32,7 @@ int main(void)
 	{
 		if (serial_getchar_ready())
 		{
-			rcv_char = serial_get_char();
+			/* rcv_char = serial_get_char();
 			switch (rcv_char)
 			{
 				//SERVO 0
@@ -80,24 +80,24 @@ int main(void)
 					servo_index=4;
 					direction=1;
 					break; */
-				default:
+				/* default:
 					servo_index=-1;
 					direction=-1;
-					break;
+					break; */
 			}
-			//serial_put_int(servo_index);
+			/* //serial_put_int(servo_index);
 			adjust_servo_angle(servo_index, direction);
 			//Resetea variables para la siguiente iteracion
 			if(servo_index>-1 || direction>-1){
 				servo_index=-1;
 				direction=-1;
-			}
+			} */ 
 			
 			/* if (rcv_char == 'a' || rcv_char == 'd')
 			{
 				adjust_servo_angle(rcv_char,0); //todo luego agregar la referencia al servo como param
-			} */
-		}
+			} 
+		}*/
 		
 		//sleepms(30); //!ver porque no funciona el sleepms
 	
@@ -106,7 +106,7 @@ int main(void)
 	return 0;
 }
 
-void adjust_servo_angle(int servo_index, int direction)
+/* void adjust_servo_angle(int servo_index, int direction)
 {
 	if(servo_index>-1){
 		if (direction==0 && servo_angles[servo_index] > 0)
@@ -132,7 +132,7 @@ void print_array()
 	}
   serial_put_str_inline("] "); */
 
-	serial_put_str_inline("[");
+/* 	serial_put_str_inline("[");
 	for(int i = 0; i<N_SERVOS; i++){
 		serial_put_int(servo_ticks[i],3);
     serial_put_str_inline(", ");
@@ -145,4 +145,4 @@ int getTicksOffset(int angle)
 {
   int result= TICKS_UNTIL_1ms + angle;
 	return result;
-}
+} */ 
