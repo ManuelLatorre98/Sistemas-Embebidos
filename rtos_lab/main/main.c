@@ -12,14 +12,14 @@ int main(void)
 	char rcv_char = ' ';
 	
 
-	*(DDR_B) |= 0b00111111; // bit 5= led arduino, pb0,1,2,3,4 = salidas de servos
-	*(PUERTO_B) |= 0b00111111;//Arranca con las señales todas en alto. El led encendido
+	*(DDR_B) |= 0b00101111; // bit 5= led arduino, pb0,1,2,3,4 = salidas de servos
+	*(PUERTO_B) |= 0b00011111;//Arranca con las señales todas en alto. pb5=pullup pulsador
 	//sleep(5);
 	timer1_init();
 	serial_init();
 	adc_init();
 	/* creamos y ponemos a ejecutar las tareas */
-	resume(create(main_stick, 60, 30, "sti", 0));
+	resume(create(main_stick, 150, 30, "sti", 0));
 	/* resume(create(main_show_data, 60, 30, "sho", 0)); */
 
 	//sleep(1); //Le doy tiempo a las tareas a iniciar y que no se rompan los print
