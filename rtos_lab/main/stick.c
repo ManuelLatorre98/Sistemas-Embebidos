@@ -122,24 +122,24 @@ int getTicksOffset(int angle)
 
 void stick_click(){
   int bitIn = *(PIN_D) & 0b00000100;
-  volatile long i=0;
+  /* volatile long i=0; */
   int bitEncendido= *(PUERTO_B) & 0b00100000;//Obtengo estado
     
-  if((bitIn==0) && (apretado==0)){//Si apretó y no venia pulsando 
-    for(i=0; i<1000; i++){} 
-    if(bitEncendido==0){//Si estaba apagado lo prende
-      *(PUERTO_B)= *(PUERTO_B) | 0b00100000;//Prende PB5=d13
+  if((bitIn == 0) /* && (apretado == 0) */){//Si apretó y no venia pulsando 
+    /* for(i=0; i<10000; i++){}  */
+    if(bitEncendido == 0){//Si estaba apagado lo prende
+      *(PUERTO_B) |= 0b00100000;//Prende PB5=d13
     }else{//Si estaba prendido lo apaga
-      *(PUERTO_B)= *(PUERTO_B) & 0b11011111;//Apaga PB5=d13
+      *(PUERTO_B) &= 0b11011111;//Apaga PB5=d13
     }
-    apretado=1;
+    /* apretado=1; */
   }
 
   /* if(bitIn!=0 && apretado==1){ //Si deje de pulsar y venia pulsando
-    *(PUERTO_B)= *(PUERTO_B) & 0b11011111;//Apaga PB5=d13
-    for(i=0; i<1000; i++){}
-    apretado=0;
-  } */
+    *(PUERTO_B) &= 0b11011111;//Apaga PB5=d13
+    /* for(i = 0; i < 1000; i++){} */
+  //  apretado=0;
+  //} */
 }
 
 
