@@ -1,6 +1,7 @@
 #include <xinu.h>
 #include "serial.h"
 #include "globals.h"
+#include <avr/interrupt.h>
 #define TICKS_UNTIL_1ms 182
 #define ANGLE_STEP 5
 //Valores analogicos del stick. Defino la sensibilidad para evitar ajustes cuando se vuelve a centrar
@@ -39,7 +40,6 @@ int main_stick(void)
      Cuando se detecten variaciones en x o y llamar a metodo que detecte index y direction
      de ahi se llama a justar serv angle
      */
-   
   } 
 }
 
@@ -76,7 +76,6 @@ int set_mov_base(int analog_in_x, int analog_in_y){
     if(servo_index_y>-1 && direction_y>-1){
       adjust_servo_angle(servo_index_y, direction_y);
     }
-    
 }
 
 void adjust_servo_angle(int servo_index, int direction)
@@ -122,24 +121,33 @@ int getTicksOffset(int angle)
 
 void stick_click(){
   int bitIn = *(PIN_D) & 0b00000100;
-  /* volatile long i=0; */
+  volatile long i=0;
   int bitEncendido= *(PUERTO_B) & 0b00100000;//Obtengo estado
     
   if((bitIn == 0) /* && (apretado == 0) */){//Si apretó y no venia pulsando 
-    /* for(i=0; i<10000; i++){}  */
+    for(i=0; i<1000; i++){} 
     if(bitEncendido == 0){//Si estaba apagado lo prende
+      cli();
       *(PUERTO_B) |= 0b00100000;//Prende PB5=d13
+      sei();
     }else{//Si estaba prendido lo apaga
+      cli();
       *(PUERTO_B) &= 0b11011111;//Apaga PB5=d13
-    }
-    /* apretado=1; */
+      sei();
+    } 
+    apretado=1; 
+
+    
   }
 
-  /* if(bitIn!=0 && apretado==1){ //Si deje de pulsar y venia pulsando
+  if(bitIn!=0 && apretado==1){ //Si deje de pulsar y venia pulsando
+  for(i = 0; i < 1000; i++){}
+    cli();
     *(PUERTO_B) &= 0b11011111;//Apaga PB5=d13
-    /* for(i = 0; i < 1000; i++){} */
-  //  apretado=0;
-  //} */
+    sei();
+    
+    apretado=0;
+  }
 }
 
 

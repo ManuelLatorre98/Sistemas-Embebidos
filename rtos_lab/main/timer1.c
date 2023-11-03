@@ -121,13 +121,13 @@ ISR(TIMER1_COMPA_vect) {
 		ticks=0;
 		for(int i = 0; i < N_SERVOS; i++){
 			pinMask= (1<<i); 
-			(*PUERTO_B)|=pinMask; //pin up a cada pin
+			(*PUERTO_B) |= pinMask; //pin up a cada pin
 		}
 	}else if(ticks >= TICKS_UNTIL_1ms && ticks <= TICKS_UNTIL_2ms){
     for(int i = 0; i < N_SERVOS; i++){
 			if(ticks == servo_ticks[i])
 			{ //Si estoy en los ticks que pide el servo
-				pinMask = 11111111;
+				pinMask = 0b11111111;
 				pinMask &= ~(1 << i);
 				(*PUERTO_B) &= pinMask; //Pin down sobre el servo
 			}
