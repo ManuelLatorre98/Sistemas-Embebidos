@@ -12,10 +12,10 @@ int main(void)
 	char rcv_char = ' ';
 	
 
-	*(DDR_B) |= 0b00111111; // bit 5= led arduino, pb0,1,2,3,4 = salidas de servos
-	*(PUERTO_B) |= 0b00111111; // Arranca con las señales todas en alto.
-	*(DDR_D) |= 0b00000000; // pd2 entrada
-	*(PUERTO_D) |= 0b00000100; //Activo pullup
+	*(DDR_B) = 0b00111111; // bit 5= led arduino, pb0,1,2,3,4 = salidas de servos
+	*(PUERTO_B) = 0b00111111; // Arranca con las señales todas en alto.
+	*(DDR_D) = 0b00000000; // pd2 entrada
+	*(PUERTO_D) = 0b00000100; //Activo pullup
 	//sleep(5);
 	timer1_init();
 	serial_init();
