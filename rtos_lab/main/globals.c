@@ -9,5 +9,5 @@ volatile unsigned char * DDR_D = (unsigned char *) 0x2A;
 volatile unsigned char * PUERTO_D = (unsigned char *) 0X2B;
 
 //volatile unsigned int seconds=0;
-volatile int servo_angles[N_SERVOS]={0,0,0,0};
-volatile int servo_ticks[N_SERVOS]={0,0,0,0};
+volatile int servo_angles[N_SERVOS]={0,0,0,0,0};
+volatile int servo_ticks[N_SERVOS]={0,0,0,0,0};
