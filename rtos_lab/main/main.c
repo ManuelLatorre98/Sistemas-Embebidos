@@ -19,11 +19,13 @@ int main(void)
 	serial_init();
 	adc_init();
 	/* creamos y ponemos a ejecutar las tareas */
-	resume(create(main_stick, 150, 30, "sti", 0));
+	resume(create(main_stick, 512, 30, "sti", 0));
 	/* resume(create(main_show_data, 60, 30, "sho", 0)); */
 
-	// sleep(1); //Le doy tiempo a las tareas a iniciar y que no se rompan los print
+	/* sleep(1); */ //Le doy tiempo a las tareas a iniciar y que no se rompan los print
 	serial_put_str("\rRTOS_LAB INICIADO\r\n");
+	sleep(10);	
+	serial_put_str("\rCONTINUA SEM\r\n");
 	while (1)
 	{
 	}

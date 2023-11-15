@@ -39,5 +39,5 @@ extern	const __flash struct dentry	devtab[] ; /* one entry per device */
 
 /* Configuration and Size Constants */
 
-#define	NPROC	     7		/* number of user processes		*/
-#define	NSEM	     0		/* number of semaphores			*/
+#define	NPROC	     3		/* number of user processes		*/
+#define	NSEM	     2		/* number of semaphores			*/

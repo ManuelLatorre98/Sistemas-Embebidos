@@ -48,51 +48,12 @@ int main_stick(void)
 
     adjust_servo_angle(0, analog_in_xr);
     adjust_servo_angle(1, analog_in_yr);
-    adjust_servo_angle(2, analog_in_xl);
-    adjust_servo_angle(3, analog_in_yl);
+    /* adjust_servo_angle(2, analog_in_xl);
+    adjust_servo_angle(3, analog_in_yl); */
     //stick_click();
-    /* 
-     Cuando se detecten variaciones en x o y llamar a metodo que detecte index y direction
-     de ahi se llama a justar serv angle
-     */
   } 
 }
 
-//SERVOS 0,1
-/* int set_mov_base(int analog_in_x, int analog_in_y){
-  	volatile int servo_index_x=-1;
-	  volatile int direction_x=-1; //-1 = error, 0 = left, 1 = right
-
-    volatile int servo_index_y=-1;
-	  volatile int direction_y=-1; //-1 = error, 0 = left, 1 = right
-    //Control eje x
-    if(analog_in_x > (CENTERED_X + SENS_X)){
-      servo_index_x=0;
-      direction_x=0;
-    
-    }else if(analog_in_x < (CENTERED_X - SENS_X)){
-      servo_index_x=0;
-      direction_x=1;
-    }
-
-    if(servo_index_x > -1 && direction_x > -1){
-      adjust_servo_angle(servo_index_x, direction_x);
-    }
-
-    //Control eje y
-    if(analog_in_y > (CENTERED_Y + SENS_Y)){
-      servo_index_y=1;
-      direction_y=0;
-    }else if(analog_in_y < (CENTERED_Y - SENS_Y)){
-      servo_index_y=1;
-      direction_y=1;
-    }
-    if(servo_index_y > -1 && direction_y > -1){
-      adjust_servo_angle(servo_index_y, direction_y);
-    }
-} */
-
-//todo aca recibir valor analogico y poner el if de linea 69 aca dentro
 void adjust_servo_angle(int servo_index, int analog_in)
 {
   int direction = -1;
@@ -108,7 +69,7 @@ void adjust_servo_angle(int servo_index, int analog_in)
     {
       servo_angles[servo_index] -= ANGLE_STEP;
       update_ticks=1;
-    }else if (direction == 1 && servo_angles[servo_index] < 100) //!Con rango [0,100] llega a 2ms
+    }else if (direction == 1 && servo_angles[servo_index] < 80) //!Con rango [0,100] llega a 2ms
     {
       servo_angles[servo_index] += ANGLE_STEP;
       update_ticks=1;
@@ -119,7 +80,6 @@ void adjust_servo_angle(int servo_index, int analog_in)
       print_array();
 
     }
-    
   }
 }
 
