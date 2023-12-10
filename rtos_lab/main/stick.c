@@ -15,7 +15,7 @@
 #define RANGE_POS (CENTERED + SENS)
 #define RANGE_NEG (CENTERED - SENS)
 int apretado=0;
-int main_stick(void)
+void main_stick(void)
 {
   int analog_in_xr;
   int analog_in_yr;
@@ -27,10 +27,13 @@ int main_stick(void)
   
   serial_put_str("\rStick start\r\n");
   while(1){
-    analog_in_xr = adc_get(0); 
+   /*  sleepms(10); */
+    serial_put_str("\rSTICK\r\n");
+    sleep(1);
+    /* analog_in_xr = adc_get(0); 
     analog_in_yr = adc_get(1); 
     analog_in_xl = adc_get(2); 
-    analog_in_yl = adc_get(3);
+    analog_in_yl = adc_get(3); */
 
     //Centered stick: (511, 495)
 
@@ -46,8 +49,8 @@ int main_stick(void)
       //todo mando analog + numero servo y hago 4 llamadas a la misma funcion
     } */
 
-    adjust_servo_angle(0, analog_in_xr);
-    adjust_servo_angle(1, analog_in_yr);
+    /* adjust_servo_angle(0, analog_in_xr);
+    adjust_servo_angle(1, analog_in_yr); */
     /* adjust_servo_angle(2, analog_in_xl);
     adjust_servo_angle(3, analog_in_yl); */
     //stick_click();
