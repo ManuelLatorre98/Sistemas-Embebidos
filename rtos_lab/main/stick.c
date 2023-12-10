@@ -21,19 +21,19 @@ void main_stick(void)
   int analog_in_yr;
   int analog_in_xl;
   int analog_in_yl;
- /*  int last_input_xr = analog_in_xr;
+  /* int last_input_xr = analog_in_xr;
   int last_input_yr = analog_in_yr; */
   
   
   serial_put_str("\rStick start\r\n");
   while(1){
    /*  sleepms(10); */
-    serial_put_str("\rSTICK\r\n");
-    sleep(1);
-    /* analog_in_xr = adc_get(0); 
+    /* serial_put_str("\rSTICK\r\n"); */
+    /* sleep(1); */
+    analog_in_xr = adc_get(0); 
     analog_in_yr = adc_get(1); 
     analog_in_xl = adc_get(2); 
-    analog_in_yl = adc_get(3); */
+    analog_in_yl = adc_get(3);
 
     //Centered stick: (511, 495)
 
@@ -49,11 +49,11 @@ void main_stick(void)
       //todo mando analog + numero servo y hago 4 llamadas a la misma funcion
     } */
 
-    /* adjust_servo_angle(0, analog_in_xr);
-    adjust_servo_angle(1, analog_in_yr); */
-    /* adjust_servo_angle(2, analog_in_xl);
-    adjust_servo_angle(3, analog_in_yl); */
-    //stick_click();
+    adjust_servo_angle(0, analog_in_xr);
+    adjust_servo_angle(1, analog_in_yr); 
+    adjust_servo_angle(2, analog_in_xl);
+    adjust_servo_angle(3, analog_in_yl);
+    stick_click();
   } 
 }
 
@@ -113,7 +113,7 @@ void stick_click(){
   int bitEncendido= *(PUERTO_B) & 0b00100000;//Obtengo estado
     
   if((bitIn == 0) /* && (apretado == 0) */){//Si apretó y no venia pulsando 
-    /* for(i=0; i<1000; i++){}  */
+    for(int i=0; i<1000; i++){} 
     if(bitEncendido == 0){//Si estaba apagado lo prende
       cli();
       *(PUERTO_B) |= 0b00100000;//Prende PB5=d13
@@ -127,7 +127,7 @@ void stick_click(){
   }
 
   if(bitIn!=0 && apretado==1){ //Si deje de pulsar y venia pulsando
-  /* for(i = 0; i < 1000; i++){} */
+  for(int i = 0; i < 1000; i++){}
     cli();
     *(PUERTO_B) &= 0b11011111;//Apaga PB5=d13
     sei();

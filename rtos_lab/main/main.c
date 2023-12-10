@@ -25,13 +25,13 @@ int main(void)
 	/* sleep(1);  *///Le doy tiempo a las tareas a iniciar y que no se rompan los print
 	serial_put_str("\rRTOS_LAB INICIADO\r\n");
 	/* sleep(10); */	
-	serial_put_str("\rCONTINUA SEM\r\n");
+	/* serial_put_str("\rCONTINUA SEM\r\n"); */
 	
 	while (1)
 	{
 		/* sleepms(10); */
-		serial_put_str("\rMAIN\r\n");
-		sleep(1);
+		/* serial_put_str("\rMAIN\r\n"); */
+		/* sleep(1); */
 	}
 	return 0;
 }
