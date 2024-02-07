@@ -32,6 +32,8 @@ void clkinit(void)
          * AVR atmega328p timer/clock init: interrupt every 1ms 
 	 * The AVR TIMER interrupt rutine is in clkhandler.c
          */
+// RAFA
+/*
 	TCCR0B |= (1<<CS01) | (1<<CS00);   //clock select is divided by 64.
 	TCCR0A |= (1<<WGM01);              //sets mode to CTC
 
@@ -41,6 +43,22 @@ void clkinit(void)
 		OCR0A = 63;                      //sets TOP to 124 so the timer will overflow every 1 ms.    
 	#endif
 	TIMSK0 |= (1<<OCIE0A);              //Output Compare Match A Interrupt Enable
+*/
+
+  // NORMAL MODE
+  TCCR2A = (1<<COM2A1) | (0<<COM2A0) | (0<<COM2B1)| (0<<COM2B0) | (0<<3) | (0<<2) | (0<<WGM21) | (0<<WGM20);  
+
+// Cada dos milisegundos
+  TCCR2B = (0<<FOC2A) | (0<<FOC2B) | (0<<5) | (0<<4) | (0<<WGM22) | (1<<CS22) | (0<<CS21) | (1<<CS20); 
+  
+  // Activo Timer2 Overflow Interrupt
+  TIMSK2 =(0<<7) | (0<<6) | (0<<5) | (0<<4) | (0<<3) | (0<<OCIE2B) | (0<<OCIE2A) | (1<<TOIE2);  
+  
+  // Oscilador interno
+  ASSR = (0<<7) | (0<<EXCLK) | (0<<AS2) | (0<<TCN2UB) | (0<<OCR2AUB) | (0<<OCR2BUB) | (0<<TCR2AUB) | (0<<TCR2BUB) ;
+  
+  //Activo interrupciones globales.
+//  sei();
 
 	return;
 }

@@ -75,8 +75,9 @@ void	nulluser()
 	enable();
 	
 	/* main */
+	serial_put_str("hola mundo \n");
 
-	// resume(create((void *)main, 440, INITPRIO, "main", 0, NULL));
+///	// resume(create((void *)main, 440, INITPRIO, "main", 0, NULL));
 	resume(create((void *)main, 512, 30, "main", 0, NULL));
 
 	/* nullprocess continues here */

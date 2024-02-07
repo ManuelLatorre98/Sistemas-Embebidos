@@ -16,7 +16,8 @@ volatile unsigned int avr_ticks=0;
 
 /* void clkhandler() */
 
-ISR(TIMER0_COMPA_vect)
+ISR(TIMER2_OVF_vect) 
+// RAFA ISR(TIMER0_COMPA_vect)
 {
 
 	/* Every ms */

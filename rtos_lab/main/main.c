@@ -9,6 +9,7 @@
 extern void main_stick(void);
 int main(void)
 {
+		serial_put_str("\rMAIN RAFA\r\n"); 
 	char rcv_char = ' ';
 	*(DDR_B) = 0b00111111;		// bit 5= led arduino, pb0,1,2,3,4 = salidas de servos
 	*(PUERTO_B) = 0b00111111; // Arranca con las señales todas en alto.
@@ -30,8 +31,8 @@ int main(void)
 	while (1)
 	{
 		/* sleepms(10); */
-		/* serial_put_str("\rMAIN\r\n"); */
-		/* sleep(1); */
+		 //serial_put_str("\rMAIN real \r\n"); 
+		sleep(1);
 	}
 	return 0;
 }

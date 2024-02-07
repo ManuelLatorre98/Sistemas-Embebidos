@@ -58,8 +58,8 @@ CALCULO DE TICKS DEL ARDUINO CON PRESCALAR 8
  **********************************************************************/
 
 /* Macros de valores */
-#define TICKS_UNTIL_1ms 182  //182
-#define TICKS_UNTIL_2ms 282		//364
+#define TICKS_UNTIL_1ms 90//182
+#define TICKS_UNTIL_2ms 364		//364- 282
 #define TICKS_UNTIL_20ms 3637		//3637
 #define TICKS_UNTIL_INTERRUPT 83		//88
 #define CLOCK_FREQ 16000000 

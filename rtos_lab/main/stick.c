@@ -2,7 +2,7 @@
 #include "serial.h"
 #include "globals.h"
 #include <avr/interrupt.h>
-#define TICKS_UNTIL_1ms 182
+#define TICKS_UNTIL_1ms 90
 #define ANGLE_STEP 5
 //Valores analogicos del stick. Defino la sensibilidad para evitar ajustes cuando se vuelve a centrar
 /* #define CENTERED_X 511
@@ -25,10 +25,10 @@ void main_stick(void)
   int last_input_yr = analog_in_yr; */
   
   
-  serial_put_str("\rStick start\r\n");
+  //serial_put_str("\rStick start\r\n");
   while(1){
-   /*  sleepms(10); */
-    /* serial_put_str("\rSTICK\r\n"); */
+    //sleepms(10); 
+    //serial_put_str("\rSTICK\r\n"); 
     /* sleep(1); */
     analog_in_xr = adc_get(0); 
     analog_in_yr = adc_get(1); 
@@ -72,7 +72,7 @@ void adjust_servo_angle(int servo_index, int analog_in)
     {
       servo_angles[servo_index] -= ANGLE_STEP;
       update_ticks=1;
-    }else if (direction == 1 && servo_angles[servo_index] < 80) //!Con rango [0,100] llega a 2ms
+    }else if (direction == 1 && servo_angles[servo_index] < 180) //!Con rango [0,100] llega a 2ms estaba en <80
     {
       servo_angles[servo_index] += ANGLE_STEP;
       update_ticks=1;
