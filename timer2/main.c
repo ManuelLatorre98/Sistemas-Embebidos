@@ -7,7 +7,7 @@
 void main()
 {
   *(DDR_B)= 0b00100000;//bit 0 = salida
-  *(PUERTO_B)= 0b00100000;
+  *(PUERTO_B)= 0b00000000;
   volatile int aux;
   /* timer1_init(); */
   timer2_init();
