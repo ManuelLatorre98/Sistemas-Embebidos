@@ -89,7 +89,7 @@ void timer1_init()
 	timer->control_reg_b |= CONF_CONTROL_REG_B_FPWM;
 	timer->control_reg_c |= CONF_CONTROL_REG_C_FPWM;
 
-	uint16_t ocr_value = TICKS_UNTIL_INTERRUPT; // Quiero una interrupción cada 5.5us=88ticks
+	uint16_t ocr_value = TICKS_UNTIL_INTERRUPT;
 
 	/* Determinamos el ancho de la señal en alto en cada ciclo con el registro OCR1A */
 	timer->out_compare_reg_ah = (uint8_t)(ocr_value >> 8); // Byte alto de OCR1A

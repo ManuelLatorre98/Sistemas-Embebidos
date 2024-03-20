@@ -4,7 +4,7 @@
 #include "globals.h"
 /* Macros para la configuracion de los registros de control */
 #define CONF_CONTROL_REG_A_FPWM 0b00000001 // [COM2A1|COM2A0]  clear on match  - [WGM21|WGM20] fast PWM
-#define CONF_CONTROL_REG_B_FPWM 0b00001001 // [WGM22]          fast PWM        - [CS22|CS21|CS20]      prescaler 8
+#define CONF_CONTROL_REG_B_FPWM 0b00000001 // [WGM22]         fast PWM        - [CS22|CS21|CS20]      prescaler 8
 
 /********************** Calculos de valores ***************************
  *
