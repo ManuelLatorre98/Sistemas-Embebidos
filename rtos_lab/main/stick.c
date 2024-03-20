@@ -37,18 +37,6 @@ void main_stick(void)
 
     //Centered stick: (511, 495)
 
-
-    /* if(analog_in_xr > last_input_xr+2 || analog_in_xr < last_input_xr-2 || analog_in_yr > last_input_yr+2 || analog_in_yr < last_input_yr-2){
-      last_input_xr=analog_in_xr;
-      serial_put_int(analog_in_xr, 4);
-    } */
-    /* if(analog_in_xr > last_input_xr+2 || analog_in_xr < last_input_xr-2 || analog_in_yr > last_input_yr+2 || analog_in_yr < last_input_yr-2){
-      last_input_xr=analog_in_xr;
-      last_input_yr=analog_in_yr;
-      set_mov_base(analog_in_xr, analog_in_yr);
-      //todo mando analog + numero servo y hago 4 llamadas a la misma funcion
-    } */
-
     adjust_servo_angle(0, analog_in_xr);
     adjust_servo_angle(1, analog_in_yr); 
     adjust_servo_angle(2, analog_in_xl);
