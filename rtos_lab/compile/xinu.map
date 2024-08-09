@@ -916,7 +916,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000     0x2914
+.text           0x0000000000000000     0x2932
  *(.vectors)
  .vectors       0x0000000000000000       0x68 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega328p.o
                 0x0000000000000000                __vectors
@@ -1182,61 +1182,61 @@ END GROUP
                 0x00000000000020bc       0x12 binaries/stick.o
                 0x00000000000020bc                initialPrint
  .text.main_stick
-                0x00000000000020ce       0x5a binaries/stick.o
+                0x00000000000020ce       0x78 binaries/stick.o
                 0x00000000000020ce                main_stick
  .text.timer1_init
-                0x0000000000002128       0x36 binaries/timer1.o
-                0x0000000000002128                timer1_init
+                0x0000000000002146       0x36 binaries/timer1.o
+                0x0000000000002146                timer1_init
  .text.__vector_11
-                0x000000000000215e       0xfc binaries/timer1.o
-                0x000000000000215e                __vector_11
+                0x000000000000217c       0xfc binaries/timer1.o
+                0x000000000000217c                __vector_11
  .text.libgcc.div
-                0x000000000000225a       0x26 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodhi4.o)
-                0x000000000000225a                __divmodhi4
-                0x000000000000225a                _div
+                0x0000000000002278       0x26 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000002278                __divmodhi4
+                0x0000000000002278                _div
  .text.libgcc.div
-                0x0000000000002280       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
-                0x0000000000002280                __divmodsi4
+                0x000000000000229e       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+                0x000000000000229e                __divmodsi4
  .text.libgcc.div
-                0x00000000000022a8       0x10 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
-                0x00000000000022a8                __negsi2
+                0x00000000000022c6       0x10 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+                0x00000000000022c6                __negsi2
  .text.libgcc.prologue
-                0x00000000000022b8       0x38 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
-                0x00000000000022b8                __prologue_saves__
+                0x00000000000022d6       0x38 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
+                0x00000000000022d6                __prologue_saves__
  .text.libgcc.prologue
-                0x00000000000022f0       0x36 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_epilogue.o)
-                0x00000000000022f0                __epilogue_restores__
+                0x000000000000230e       0x36 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_epilogue.o)
+                0x000000000000230e                __epilogue_restores__
  .text.libgcc.div
-                0x0000000000002326       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodhi4.o)
-                0x0000000000002326                __udivmodhi4
+                0x0000000000002344       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000002344                __udivmodhi4
  .text.libgcc.div
-                0x000000000000234e       0x44 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
-                0x000000000000234e                __udivmodsi4
+                0x000000000000236c       0x44 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+                0x000000000000236c                __udivmodsi4
  .text.avr-libc
-                0x0000000000002392       0x1e /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strncpy_P.o)
-                0x0000000000002392                strncpy_P
+                0x00000000000023b0       0x1e /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strncpy_P.o)
+                0x00000000000023b0                strncpy_P
  .text.avr-libc
-                0x00000000000023b0        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(memset.o)
-                0x00000000000023b0                memset
+                0x00000000000023ce        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(memset.o)
+                0x00000000000023ce                memset
  .text.avr-libc
-                0x00000000000023be       0x52 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vsnprintf.o)
-                0x00000000000023be                vsnprintf
+                0x00000000000023dc       0x52 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vsnprintf.o)
+                0x00000000000023dc                vsnprintf
  .text.avr-libc
-                0x0000000000002410      0x3a4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                0x0000000000002410                vfprintf
+                0x000000000000242e      0x3a4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                0x000000000000242e                vfprintf
  .text.avr-libc
-                0x00000000000027b4       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen_P.o)
-                0x00000000000027b4                strnlen_P
+                0x00000000000027d2       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                0x00000000000027d2                strnlen_P
  .text.avr-libc
-                0x00000000000027ca       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen.o)
-                0x00000000000027ca                strnlen
+                0x00000000000027e8       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen.o)
+                0x00000000000027e8                strnlen
  .text.avr-libc
-                0x00000000000027e0       0x78 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fputc.o)
-                0x00000000000027e0                fputc
+                0x00000000000027fe       0x78 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fputc.o)
+                0x00000000000027fe                fputc
  .text.avr-libc
-                0x0000000000002858       0xbc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
-                0x0000000000002858                __ultoa_invert
-                0x0000000000002914                . = ALIGN (0x2)
+                0x0000000000002876       0xbc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
+                0x0000000000002876                __ultoa_invert
+                0x0000000000002932                . = ALIGN (0x2)
  *(.fini9)
  *(.fini9)
  *(.fini8)
@@ -1257,9 +1257,9 @@ END GROUP
  *(.fini1)
  *(.fini0)
  *(.fini0)
-                0x0000000000002914                _etext = .
+                0x0000000000002932                _etext = .
 
-.data           0x0000000000800100       0x9c load address 0x0000000000002914
+.data           0x0000000000800100       0x92 load address 0x0000000000002932
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1270,66 +1270,66 @@ END GROUP
                 0x0000000000800102        0x2 binaries/newqueue.o
  .data.adc      0x0000000000800104        0x2 binaries/adc.o
                 0x0000000000800104                adc
- .data.servo_angles
-                0x0000000000800106        0xa binaries/globals.o
-                0x0000000000800106                servo_angles
  .data.PUERTO_D
-                0x0000000000800110        0x2 binaries/globals.o
-                0x0000000000800110                PUERTO_D
- .data.DDR_D    0x0000000000800112        0x2 binaries/globals.o
-                0x0000000000800112                DDR_D
- .data.PIN_D    0x0000000000800114        0x2 binaries/globals.o
-                0x0000000000800114                PIN_D
+                0x0000000000800106        0x2 binaries/globals.o
+                0x0000000000800106                PUERTO_D
+ .data.DDR_D    0x0000000000800108        0x2 binaries/globals.o
+                0x0000000000800108                DDR_D
+ .data.PIN_D    0x000000000080010a        0x2 binaries/globals.o
+                0x000000000080010a                PIN_D
  .data.PUERTO_B
-                0x0000000000800116        0x2 binaries/globals.o
-                0x0000000000800116                PUERTO_B
- .data.DDR_B    0x0000000000800118        0x2 binaries/globals.o
-                0x0000000000800118                DDR_B
+                0x000000000080010c        0x2 binaries/globals.o
+                0x000000000080010c                PUERTO_B
+ .data.DDR_B    0x000000000080010e        0x2 binaries/globals.o
+                0x000000000080010e                DDR_B
  .data.TICKS_UNTIL_INTERRUPT
-                0x000000000080011a        0x2 binaries/globals.o
-                0x000000000080011a                TICKS_UNTIL_INTERRUPT
+                0x0000000000800110        0x2 binaries/globals.o
+                0x0000000000800110                TICKS_UNTIL_INTERRUPT
  .data.TICKS_UNTIL_20ms
-                0x000000000080011c        0x2 binaries/globals.o
-                0x000000000080011c                TICKS_UNTIL_20ms
+                0x0000000000800112        0x2 binaries/globals.o
+                0x0000000000800112                TICKS_UNTIL_20ms
  .data.TICKS_UNTIL_2ms
-                0x000000000080011e        0x2 binaries/globals.o
-                0x000000000080011e                TICKS_UNTIL_2ms
+                0x0000000000800114        0x2 binaries/globals.o
+                0x0000000000800114                TICKS_UNTIL_2ms
  .data.TICKS_UNTIL_1ms
-                0x0000000000800120        0x2 binaries/globals.o
-                0x0000000000800120                TICKS_UNTIL_1ms
+                0x0000000000800116        0x2 binaries/globals.o
+                0x0000000000800116                TICKS_UNTIL_1ms
  .data.puerto_serial
-                0x0000000000800122        0x2 binaries/serial.o
-                0x0000000000800122                puerto_serial
+                0x0000000000800118        0x2 binaries/serial.o
+                0x0000000000800118                puerto_serial
  .data.timer_interrupt_mask_reg
-                0x0000000000800124        0x2 binaries/timer1.o
-                0x0000000000800124                timer_interrupt_mask_reg
- .data.timer    0x0000000000800126        0x2 binaries/timer1.o
-                0x0000000000800126                timer
+                0x000000000080011a        0x2 binaries/timer1.o
+                0x000000000080011a                timer_interrupt_mask_reg
+ .data.timer    0x000000000080011c        0x2 binaries/timer1.o
+                0x000000000080011c                timer
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000800128       0x2f binaries/initialize.o
+                0x000000000080011e       0x2f binaries/initialize.o
  .rodata.str1.1
-                0x0000000000800157        0x6 binaries/naminit.o
+                0x000000000080014d        0x6 binaries/naminit.o
                                           0x7 (size before relaxing)
  .rodata.str1.1
-                0x000000000080015d       0x1f binaries/main.o
+                0x0000000000800153       0x1f binaries/main.o
  .rodata.str1.1
-                0x000000000080017c        0x8 binaries/print_angles.o
+                0x0000000000800172        0x8 binaries/print_angles.o
  .rodata.str1.1
-                0x0000000000800184       0x18 binaries/stick.o
+                0x000000000080017a       0x18 binaries/stick.o
  *(.gnu.linkonce.r*)
-                0x000000000080019c                . = ALIGN (0x2)
-                0x000000000080019c                _edata = .
-                0x000000000080019c                PROVIDE (__data_end, .)
+                0x0000000000800192                . = ALIGN (0x2)
+                0x0000000000800192                _edata = .
+                0x0000000000800192                PROVIDE (__data_end, .)
 
-.bss            0x000000000080019c      0x233
-                0x000000000080019c                PROVIDE (__bss_start, .)
+.bss            0x0000000000800192      0x23d
+                0x0000000000800192                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.nextpid.2834
-                0x000000000080019c        0x4 binaries/create.o
+                0x0000000000800192        0x4 binaries/create.o
+ .bss.servo_angles
+                0x0000000000800196        0xa binaries/globals.o
+                0x0000000000800196                servo_angles
  .bss.servo_ticks
                 0x00000000008001a0        0xa binaries/globals.o
                 0x00000000008001a0                servo_ticks
@@ -1369,8 +1369,8 @@ END GROUP
  COMMON         0x00000000008003ce        0x1 binaries/timer1.o
                 0x00000000008003ce                pinMask
                 0x00000000008003cf                PROVIDE (__bss_end, .)
-                0x0000000000002914                __data_load_start = LOADADDR (.data)
-                0x00000000000029b0                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000002932                __data_load_start = LOADADDR (.data)
+                0x00000000000029c4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00000000008003cf        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)

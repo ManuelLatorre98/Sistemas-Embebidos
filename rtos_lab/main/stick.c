@@ -30,8 +30,8 @@ void main_stick(void)
     adjust_servo_angle(1, analog_in_yr); 
 
     //!(Si solo hay un stick conectado, debo indicar explicitamente que esta centrado
-    adjust_servo_angle(2, CENTERED); //Todo analgoin_in_xl 
-    adjust_servo_angle(3, CENTERED); //Todo analgoin_in_yl
+    adjust_servo_angle(2, analog_in_xl); //Todo analog_in_xl 
+    adjust_servo_angle(3, analog_in_yl); //Todo analog_in_yl
 
 
     //Parametros stick_click: (nro servo, nro stick, entrada analogica)
