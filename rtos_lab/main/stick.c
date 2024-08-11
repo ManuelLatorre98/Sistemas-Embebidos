@@ -25,6 +25,13 @@ void main_stick(void)
     analog_in_yr = adc_get(1); 
     analog_in_xl = adc_get(2); 
     analog_in_yl = adc_get(3);
+    /* 
+    Calcular limites de los adc_get. 
+    Esos limites son los que me tiene que imprimir el handcontroller al adc
+    Envio los resultados por el adc como caracteres. Usar $ para indicar el final de linea.
+    Ese resultado va a ser analog_in_yl
+    Una vez tengo un valor lo mando con adjust_servo_angle(3, analog_in_yl)
+    */
 
     adjust_servo_angle(0, analog_in_xr);
     adjust_servo_angle(1, analog_in_yr); 
@@ -107,7 +114,6 @@ int getTicksOffset(int angle)
 {
 	return TICKS_UNTIL_1ms + angle;
 }
-
 void initialPrint(){
   sleepms(400);
   serial_put_str("ANGULOS DE LOS SERVOS: ");
