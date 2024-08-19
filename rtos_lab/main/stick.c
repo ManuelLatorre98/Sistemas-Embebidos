@@ -25,6 +25,7 @@ void main_stick(void)
     analog_in_yr = adc_get(1); 
     analog_in_xl = adc_get(2); 
     analog_in_yl = adc_get(3);
+
     /* 
     Calcular limites de los adc_get. 
     Esos limites son los que me tiene que imprimir el handcontroller al adc
@@ -39,8 +40,7 @@ void main_stick(void)
     //!(Si solo hay un stick conectado, debo indicar explicitamente que esta centrado
     adjust_servo_angle(2, analog_in_xl); //Todo analog_in_xl 
     adjust_servo_angle(3, analog_in_yl); //Todo analog_in_yl
-
-
+    
     //Parametros stick_click: (nro servo, nro stick, entrada analogica)
     int bitInL = *(PIN_D) & 0b00000100;
     int bitInR = *(PIN_D) & 0b00001000;
