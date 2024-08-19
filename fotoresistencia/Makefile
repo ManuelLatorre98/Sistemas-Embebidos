@@ -3,7 +3,7 @@
 CC=avr-gcc
 OBJETOS=main.o adc.o serial.o sleep.o
 APP=led-test
-CFLAGS=-Os -DF_CPU=4000000UL -mmcu=atmega328p 
+CFLAGS=-Os -DF_CPU=16000000UL -mmcu=atmega328p 
 LDFLAGS=-mmcu=atmega328p
 FIRMWARE=imagen.hex
 
@@ -23,7 +23,7 @@ $(APP): $(OBJETOS)
 
 flash:
 	avr-objcopy -O ihex -R .eeprom $(APP) $(FIRMWARE)
-	avrdude -p atmega328p -c arduino -P /dev/ttyUSB0 -b 115200 -D -U flash:w:$(FIRMWARE):i
+	avrdude -p atmega328p -c arduino -P /dev/ttyUSB0 -b 57600 -D -U flash:w:$(FIRMWARE):i
 clean:
 	rm $(OBJETOS) $(APP) $(FIRMWARE)
 

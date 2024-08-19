@@ -4,7 +4,7 @@
 void knight_rider_run(void)
 {
   serial_init();
-  serial_put_string("\n\rKNIGHTRIDER ENCENDIDO\n\r ");
+  serial_put_str("\n\rKNIGHTRIDER ENCENDIDO\n\r ");
   encendido=0;
   rcv_char='a';
   (*DDR_B)= 0b00110111;//bit 5= led arduino(para debugear), pb0,pb1,pb2=SALIDAS
@@ -52,7 +52,7 @@ void verif_pagar()
     if(rcv_char == 'q'){//Recibe q entonces apaga
       encendido=0;
       (*PUERTO_B)= 0b00000000; //Apaga led arduino
-      serial_put_string("\rKNIGHTRIDER APAGADO\n\n\r ");
+      serial_put_str("\rKNIGHTRIDER APAGADO\n\n\r ");
     }
   }
 }

@@ -13,7 +13,7 @@ void ultrasound_run(void)
   (*DDR_B)= 0b00110000;//pb3= ENTRADA, pb4=SALIDA
   (*PUERTO_B)= 0b00100000;
 	serial_init();
-  serial_put_string("\n\rULTRASOUND ENCENDIDO\n\r ");
+  serial_put_str("ULTRASOUND ENCENDIDO\n\r ");
   encendido=1;
 
   while(encendido){//
@@ -33,7 +33,7 @@ void ultrasound_run(void)
     }
     tiempo_us = t * 10;  
     distancia_cm = tiempo_us / 58;
-    serial_put_string("\n\rDIST: ");
+    serial_put_str("\n\rDIST: ");
     serial_put_int(distancia_cm,4);//Mostrar distancia
     sleep_ms(50);
 
@@ -48,7 +48,7 @@ void verif_apagar()
     if(rcv_char == 'q'){//Recibe q entonces apaga
       encendido=0;
       (*PUERTO_B)= 0b00000000; //Apaga led arduino
-      serial_put_string("\rULTRASOUND APAGADO\n\n\r ");
+      serial_put_str("\rULTRASOUND APAGADO\n\n\r ");
     }
   }
 }

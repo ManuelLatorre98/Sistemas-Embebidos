@@ -4,9 +4,11 @@
 #include "timer1.h"
 #include <avr/interrupt.h>
 #include "adc.h"
+//#include "fotoresistencia.h"
 /* definicion de tareas (cuyo codigo fuente es externo) */
 
 extern void main_stick(void);
+extern void fotoresis(void);
 int main(void)
 {
 	char rcv_char = ' ';
@@ -19,8 +21,8 @@ int main(void)
 	serial_init();
 	adc_init();
 	/* creamos y ponemos a ejecutar las tareas */
-	resume(create(main_stick, 512, 30, "sti", 0));
-
+	//resume(create(main_stick, 512, 30, "sti", 0));
+	resume(create(fotoresis, 512, 30, "fot",0));
 	sleepms(200);  //Le doy tiempo a las tareas a iniciar y que no se rompan los print
 	serial_put_str("\rBRAZO MECANICO INICIADO\r\n");	
 	for(;;)
