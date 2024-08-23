@@ -27,4 +27,9 @@
 
 # TESTING
 - Con screen /dev/ttyUSB0 9600 (2400 en arduino chino) se puede observar el array con los ticks/grados de los servos. - Estos van de 90 a 270 (osea 180°). 
-- 90 ticks = 1ms, 270 ticks= 2ms.
+- 90 ticks = 1ms, 270 ticks= 2ms. 
+
+# CALIBRACION BRAZO
+- Arrancar el brazo
+- Mover todos los servos para que este inicializado el array de angulos
+- Mover cada servo hacia un limite y ubicar correctamente la pieza

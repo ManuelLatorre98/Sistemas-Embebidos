@@ -21,6 +21,7 @@ void main_stick(void)
   
   initialPrint();
   while(1){
+    //sleepms(70);
     analog_in_xr = adc_get(0); 
     analog_in_yr = adc_get(1); 
     analog_in_xl = adc_get(2); 
@@ -39,13 +40,13 @@ void main_stick(void)
 
     //!(Si solo hay un stick conectado, debo indicar explicitamente que esta centrado
     adjust_servo_angle(2, analog_in_xl); //Todo analog_in_xl 
-    adjust_servo_angle(3, analog_in_yl); //Todo analog_in_yl
+    adjust_servo_angle(4, analog_in_yl); //Todo analog_in_yl
     
-    //Parametros stick_click: (nro servo, nro stick, entrada analogica)
+    /* //Parametros stick_click: (nro servo, nro stick, entrada analogica)
     int bitInL = *(PIN_D) & 0b00000100;
     int bitInR = *(PIN_D) & 0b00001000;
     stick_click(4,0,bitInL); //0 = left stick, 
-    stick_click(4,1,bitInR); //1 = right stick
+    stick_click(4,1,bitInR); //1 = right stick */
   } 
 }
 
