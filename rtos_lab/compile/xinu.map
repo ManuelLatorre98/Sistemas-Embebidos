@@ -930,7 +930,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000     0x2818
+.text           0x0000000000000000     0x280e
  *(.vectors)
  .vectors       0x0000000000000000       0x68 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega328p.o
                 0x0000000000000000                __vectors
@@ -1193,61 +1193,61 @@ END GROUP
                 0x0000000000001fc2       0x12 binaries/stick.o
                 0x0000000000001fc2                initialPrint
  .text.main_stick
-                0x0000000000001fd4       0x58 binaries/stick.o
+                0x0000000000001fd4       0x4e binaries/stick.o
                 0x0000000000001fd4                main_stick
  .text.timer1_init
-                0x000000000000202c       0x36 binaries/timer1.o
-                0x000000000000202c                timer1_init
+                0x0000000000002022       0x36 binaries/timer1.o
+                0x0000000000002022                timer1_init
  .text.__vector_11
-                0x0000000000002062       0xfc binaries/timer1.o
-                0x0000000000002062                __vector_11
+                0x0000000000002058       0xfc binaries/timer1.o
+                0x0000000000002058                __vector_11
  .text.libgcc.div
-                0x000000000000215e       0x26 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodhi4.o)
-                0x000000000000215e                __divmodhi4
-                0x000000000000215e                _div
+                0x0000000000002154       0x26 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodhi4.o)
+                0x0000000000002154                __divmodhi4
+                0x0000000000002154                _div
  .text.libgcc.div
-                0x0000000000002184       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
-                0x0000000000002184                __divmodsi4
+                0x000000000000217a       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+                0x000000000000217a                __divmodsi4
  .text.libgcc.div
-                0x00000000000021ac       0x10 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
-                0x00000000000021ac                __negsi2
+                0x00000000000021a2       0x10 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+                0x00000000000021a2                __negsi2
  .text.libgcc.prologue
-                0x00000000000021bc       0x38 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
-                0x00000000000021bc                __prologue_saves__
+                0x00000000000021b2       0x38 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_prologue.o)
+                0x00000000000021b2                __prologue_saves__
  .text.libgcc.prologue
-                0x00000000000021f4       0x36 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_epilogue.o)
-                0x00000000000021f4                __epilogue_restores__
+                0x00000000000021ea       0x36 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_epilogue.o)
+                0x00000000000021ea                __epilogue_restores__
  .text.libgcc.div
-                0x000000000000222a       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodhi4.o)
-                0x000000000000222a                __udivmodhi4
+                0x0000000000002220       0x28 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000000000002220                __udivmodhi4
  .text.libgcc.div
-                0x0000000000002252       0x44 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
-                0x0000000000002252                __udivmodsi4
+                0x0000000000002248       0x44 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+                0x0000000000002248                __udivmodsi4
  .text.avr-libc
-                0x0000000000002296       0x1e /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strncpy_P.o)
-                0x0000000000002296                strncpy_P
+                0x000000000000228c       0x1e /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strncpy_P.o)
+                0x000000000000228c                strncpy_P
  .text.avr-libc
-                0x00000000000022b4        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(memset.o)
-                0x00000000000022b4                memset
+                0x00000000000022aa        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(memset.o)
+                0x00000000000022aa                memset
  .text.avr-libc
-                0x00000000000022c2       0x52 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vsnprintf.o)
-                0x00000000000022c2                vsnprintf
+                0x00000000000022b8       0x52 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vsnprintf.o)
+                0x00000000000022b8                vsnprintf
  .text.avr-libc
-                0x0000000000002314      0x3a4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                0x0000000000002314                vfprintf
+                0x000000000000230a      0x3a4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                0x000000000000230a                vfprintf
  .text.avr-libc
-                0x00000000000026b8       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen_P.o)
-                0x00000000000026b8                strnlen_P
+                0x00000000000026ae       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                0x00000000000026ae                strnlen_P
  .text.avr-libc
-                0x00000000000026ce       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen.o)
-                0x00000000000026ce                strnlen
+                0x00000000000026c4       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(strnlen.o)
+                0x00000000000026c4                strnlen
  .text.avr-libc
-                0x00000000000026e4       0x78 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fputc.o)
-                0x00000000000026e4                fputc
+                0x00000000000026da       0x78 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(fputc.o)
+                0x00000000000026da                fputc
  .text.avr-libc
-                0x000000000000275c       0xbc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
-                0x000000000000275c                __ultoa_invert
-                0x0000000000002818                . = ALIGN (0x2)
+                0x0000000000002752       0xbc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libc.a(ultoa_invert.o)
+                0x0000000000002752                __ultoa_invert
+                0x000000000000280e                . = ALIGN (0x2)
  *(.fini9)
  *(.fini9)
  *(.fini8)
@@ -1268,9 +1268,9 @@ END GROUP
  *(.fini1)
  *(.fini0)
  *(.fini0)
-                0x0000000000002818                _etext = .
+                0x000000000000280e                _etext = .
 
-.data           0x0000000000800100       0x90 load address 0x0000000000002818
+.data           0x0000000000800100       0x90 load address 0x000000000000280e
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1376,8 +1376,8 @@ END GROUP
  COMMON         0x00000000008003ca        0x1 binaries/timer1.o
                 0x00000000008003ca                pinMask
                 0x00000000008003cb                PROVIDE (__bss_end, .)
-                0x0000000000002818                __data_load_start = LOADADDR (.data)
-                0x00000000000028a8                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000000000000280e                __data_load_start = LOADADDR (.data)
+                0x000000000000289e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00000000008003cb        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)

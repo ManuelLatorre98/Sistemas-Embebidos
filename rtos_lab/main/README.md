@@ -18,12 +18,12 @@
 
 ## SERVOS
 - **GND (CABLE NEGRO/MARRON):** GND 
-- **VCC (CABLE ROJO):** VCC 
-- **PWM/SEÑAL SALIDA (Servo0):** PIN8 Pb0
-- **PWM/SEÑAL SALIDA (Servo1):** PIN9 Pb1
-- **PWM/SEÑAL SALIDA (Servo2):** PIN10 Pb2
-- **PWM/SEÑAL SALIDA (Servo3):** PIN11 Pb3
-- **PWM/SEÑAL SALIDA (Servo4):** PIN12 Pb4
+- **VCC (CABLE ROJO):** VCC 6.6V (usar fuente)
+- **PWM/SEÑAL SALIDA (Servo0 garra):** PIN8 Pb0
+- **PWM/SEÑAL SALIDA (Servo1 muñeca):** PIN9 Pb1
+- **PWM/SEÑAL SALIDA (Servo2 base):** PIN10 Pb2
+- **PWM/SEÑAL SALIDA (Servo3 sin uso):** PIN11 Pb3 
+- **PWM/SEÑAL SALIDA (Servo4 codo):** PIN12 Pb4
 
 # TESTING
 - Con screen /dev/ttyUSB0 9600 (2400 en arduino chino) se puede observar el array con los ticks/grados de los servos. - Estos van de 90 a 270 (osea 180°). 
