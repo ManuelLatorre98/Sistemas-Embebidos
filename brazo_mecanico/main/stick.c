@@ -20,12 +20,19 @@ void main_stick(void)
   int last_input_yr = analog_in_yr; */
   
   initialPrint();
+  char rcv_char;
   while(1){
     //sleepms(70);
     analog_in_xr = adc_get(0); 
     analog_in_yr = adc_get(1); 
     analog_in_xl = adc_get(2); 
     analog_in_yl = adc_get(3);
+
+
+    if(serial_getchar_ready()){
+      rcv_char = serial_get_char();
+      serial_put_str("ENTRO UN CHAR");
+    }
 
     /* 
     Calcular limites de los adc_get. 
