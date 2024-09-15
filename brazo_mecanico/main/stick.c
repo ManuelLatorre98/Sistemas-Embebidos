@@ -20,7 +20,7 @@ void main_stick(void)
   int last_input_yr = analog_in_yr; */
   
   initialPrint();
-  char rcv_char;
+  unsigned char rcv_byte;
   while(1){
     //sleepms(70);
     analog_in_xr = adc_get(0); 
@@ -30,8 +30,15 @@ void main_stick(void)
 
 
     if(serial_getchar_ready()){
-      rcv_char = serial_get_char();
-      serial_put_str("ENTRO UN CHAR");
+      rcv_byte = serial_get_char();
+      char buffer[50];  // Asegúrate de que el buffer sea suficientemente grande
+      sprintf(buffer, "ENTRO UN CHAR: %c\n", rcv_byte);
+      char a='P';
+      int result= (int)rcv_byte;
+      //serial_put_char(rcv_byte);
+      serial_put_int(result,3);
+      serial_put_str(' ');
+      
     }
 
     /* 
