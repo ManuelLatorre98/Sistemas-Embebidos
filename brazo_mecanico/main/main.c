@@ -8,6 +8,7 @@
 /* definicion de tareas (cuyo codigo fuente es externo) */
 
 extern void main_stick(void);
+extern void main_hand(void);
 int main(void)
 {
 	char rcv_char = ' ';
@@ -20,7 +21,8 @@ int main(void)
 	serial_init();
 	adc_init();
 	/* creamos y ponemos a ejecutar las tareas */
-	resume(create(main_stick, 512, 30, "sti", 0));
+	/* resume(create(main_stick, 512, 30, "sti", 0)); */
+	resume(create(main_hand, 512, 30, "han", 0));
 	sleepms(200);  //Le doy tiempo a las tareas a iniciar y que no se rompan los print
 	serial_put_str("\rBRAZO MECANICO INICIADO\r\n");	
 	for(;;)

@@ -8,4 +8,5 @@ void print_angles()
     serial_put_str_inline(", ");
 	}
   serial_put_str_inline("] ");
+	serial_put_str(' ');
 }

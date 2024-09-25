@@ -31,12 +31,11 @@ void main_stick(void)
 
     if(serial_getchar_ready()){
       rcv_byte = serial_get_char();
-      char buffer[50];  // Asegúrate de que el buffer sea suficientemente grande
-      sprintf(buffer, "ENTRO UN CHAR: %c\n", rcv_byte);
-      char a='P';
+      char buffer[50]; 
       int result= (int)rcv_byte;
       //serial_put_char(rcv_byte);
       serial_put_int(result,3);
+      
       serial_put_str(' ');
       
     }
