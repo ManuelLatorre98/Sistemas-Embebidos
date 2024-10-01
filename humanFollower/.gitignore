@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Entornos virtuales (venv, env)
+venv/
+env/
+.venv/
+.env/
+
+# Archivos de configuración de entornos virtuales
+.Python
+
+# Archivos de configuración de herramientas de empaquetado
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Configuración IDEs
+.vscode/
+.idea/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de log
+*.log
+
+# Archivos generados por Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Archivos de caché de pytest
+.pytest_cache/
+
+# Archivos de cobertura de tests
+htmlcov/
+.coverage
+.coverage.*
+
+# Otros
+*.sqlite3
+*.db
